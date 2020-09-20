@@ -38,6 +38,7 @@ import ModalMaps from './ModalMaps';
 
 const api = {
     baseUrl: `http://127.0.0.1:8000/api/group/`,
+    usuario: 'http://127.0.0.1:8000/api/user/',
     urlToken: `http://127.0.0.1:8000/api/auth/`
 };
 
@@ -97,6 +98,7 @@ class Header extends React.Component {
             isShowing: false,
             password: '',
             type: 'password',
+            idUsuarioLogado: ''
         };
       this.showHide = this.showHide.bind(this);
       this.fetchGrupos = this.fetchGrupos.bind(this);
@@ -129,12 +131,42 @@ class Header extends React.Component {
       });
     }
 
+componentDidMount(){
+        axios.get(
+        api.usuario, { headers: {
+            'Content-Type' : 'application/json',
+            'Accept' : 'application/json',
+            "Authorization" : `Token ${this.props.cookies.get('token')}`}
+        }
+      ).then((res) => {
+        this.setState({idUsuarioLogado: res.data.id})
+      });
+}
+entrarGrupo = (e) => {
+    let dadosGrupo = e.target.value + "," + this.state.idUsuarioLogado;
+    dadosGrupo = dadosGrupo.split(',');
+    //var json = JSON.stringify(dadosGrupo)
+    //console.log(json[0])
+    axios.put(
+        api.baseUrl, {
+            'username': [1, 2, 2, 5],
+            'descricao': 'Grupo Tux'
+
+        }, { headers: {
+            'Content-Type' : 'application/json',
+            'Accept' : 'application/json',
+            "Authorization" : `Token ${this.props.cookies.get('token')}`}
+        }
+      ).then((res) => {
+        console.log("teste")
+        console.log(res)
+      });
+}
 
 
   render() {
    // eslint-disable-next-line
    const { loading } = this.state;
-   console.log(this.state.grupos)
     console.log(this.props.cookies.get('token'))
    if(this.props.cookies.get('token') === null || this.props.cookies.get('token') === 'undefined'){
         window.location.replace("/auth/login");
@@ -161,12 +193,11 @@ class Header extends React.Component {
                     'fontSize': '.8em',
               }} type="submit" value='{}' >Adicionar</MDBBtn>
               <Row>{this.state.grupos.map((w, index)=>
-
                     <Col lg="6" xl="3">
+                     <button variant="contained" onClick={this.entrarGrupo} value={w.descricao + "," + w.username}>Entrar no grupo</button>
                      <Alert variant="filled" severity="info">
                     <strong>{w.descricao}</strong>
                     </Alert>
-
                    <Card className="card-stats mb-xl-5">
                     <CardBody style={{color: 'black',marginTop: '-25px', whiteSpace: 'pre-line'}}>
                             <p>  < br />

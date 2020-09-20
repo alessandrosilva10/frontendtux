@@ -22,7 +22,6 @@ import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
-import Pentest from "views/Pentest.js";
 
 var routes = [
   {
@@ -57,13 +56,6 @@ var routes = [
     nname: "Teste",
     icon: "ni ni-pin-3 text-orange",
     component: Maps,
-    layout: "/admin"
-  },
-   {
-    path: "/pentest",
-    name: "Teste",
-    icon: "ni ni-pin-3 text-orange",
-    component: Pentest,
     layout: "/admin"
   },
   {

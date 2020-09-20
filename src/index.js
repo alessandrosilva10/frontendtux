@@ -26,7 +26,7 @@ import "assets/scss/argon-dashboard-react.scss";
 import AdminLayout from "layouts/Admin.js";
 import AuthLayout from "layouts/Auth.js";
 import { CookiesProvider } from "react-cookie";
-import PentestLayout from "views/Pentest.js";
+
 
 ReactDOM.render(
   <BrowserRouter>
@@ -34,7 +34,6 @@ ReactDOM.render(
       <Switch>
           <Route path="/admin" render={props => <AdminLayout {...props} />} />
           <Route path="/auth" render={props => <AuthLayout {...props} />} />
-          <Route path="/pentest" render={props => <PentestLayout {...props} />} />
           <Redirect from="/" to="/auth/login" />
       </Switch>
       </CookiesProvider>
