@@ -22,5 +22,5 @@ export class ReactGoogleMaps extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyBoIoWXDQVRAzePDp-REl-fKWTcfGS7Fd0'
+  apiKey: 'CENSORED'
 })(ReactGoogleMaps)
