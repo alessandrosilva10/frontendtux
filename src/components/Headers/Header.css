@@ -1,0 +1,22 @@
+/* Copy the classes below to get a premuim like MDB buttons (recreated) */
+.btn-rounded{
+  border-radius: 24px;
+}
+.btn-floating {
+  width: 49px;
+  height: 49px;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 20px;
+  line-height: 2.00;
+  border-radius: 30px;
+}
+.btn-large {
+  width: 79px;
+  height: 79px;
+  text-align: center;
+  padding: 13px 0;
+  font-size: 30px;
+  line-height: 2.00;
+  border-radius: 70px;
+}
