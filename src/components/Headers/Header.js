@@ -125,15 +125,13 @@ componentDidMount(){
         this.setState({idUsuarioLogado: res.data.id})
       });
 }
-entrarGrupo = (e) => {
-    let dadosGrupo = e.target.value + "," + this.state.idUsuarioLogado;
-    dadosGrupo = dadosGrupo.split(',');
-    //var json = JSON.stringify(dadosGrupo)
-    //console.log(json[0])
+
+entrarGrupo = (descricao_grupo, id_usuario, id_grupo) => () => {
+    id_usuario.push(this.state.idUsuarioLogado)
     axios.put(
-        api.baseUrl, {
-            'username': [1, 2, 2, 5],
-            'descricao': 'Grupo Tux'
+        api.baseUrl+id_grupo+'/', {
+            'username': id_usuario,
+            'descricao': descricao_grupo
 
         }, { headers: {
             'Content-Type' : 'application/json',
@@ -141,9 +139,13 @@ entrarGrupo = (e) => {
             "Authorization" : `Token ${this.props.cookies.get('token')}`}
         }
       ).then((res) => {
-        console.log("teste")
+        console.log("Usuário entrou no grupo com sucesso!")
         console.log(res)
       });
+}
+
+componentDidUpdate(){
+    this.entrarGrupo();
 }
 
 
@@ -163,21 +165,21 @@ entrarGrupo = (e) => {
             <div className="header-body">
               <div style={{color: 'white',textAlign: 'center', fontSize: '60px', padding: '50px'}}><strong>FRONTEND GRUPO TUX</strong></div>
               {/* Card stats */}
-              <MDBBtn style={{
-                    'cursor': 'pointer',
-                    'bottom': '18px',
-                    'height': '45x',
-                    'background': '#2196f3',
-                    'color': 'white',
-                    'borderRadius': '10px',
-                    'borderColor': '#2196f3',
-                    'border': '1px solid #2196f3',
-                    'fontWeight': '700',
-                    'fontSize': '.8em',
-              }} type="submit" value='{}' >Adicionar</MDBBtn>
               <Row>{this.state.grupos.map((w, index)=>
+
                     <Col lg="6" xl="3">
-                     <button variant="contained" onClick={this.entrarGrupo} value={w.descricao + "," + w.username}>Entrar no grupo</button>
+                    <MDBBtn style={{
+                        'cursor': 'pointer',
+                        'bottom': '18px',
+                        'height': '45x',
+                        'background': '#2196f3',
+                        'color': 'white',
+                        'borderRadius': '10px',
+                        'borderColor': '#2196f3',
+                        'border': '1px solid #2196f3',
+                        'fontWeight': '700',
+                        'fontSize': '.8em',
+                  }} onClick={this.entrarGrupo(w.descricao, w.username, w.id)}>Entrar no grupo</MDBBtn>
                      <Alert variant="filled" severity="info">
                     <strong>{w.descricao}</strong>
                     </Alert>
