@@ -16,6 +16,8 @@
 
 */
 import React from "react";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 // reactstrap components
 import {
@@ -34,12 +36,22 @@ import {
 } from "reactstrap";
 
 class Register extends React.Component {
+
+
+  sucess = () => toast.success("Usuário logado com sucesso!");
+  warning = () => toast.warning("Usuário não autenticado!");
+
+  register = event => {
+    
+  }
+
+
   render() {
     return (
       <>
         <Col lg="6" md="8">
           <Card className="bg-secondary shadow border-0">
-            <CardHeader className="bg-transparent pb-5">
+            {/* <CardHeader className="bg-transparent pb-5">
               <div className="text-muted text-center mt-2 mb-4">
                 <small>Sign up with</small>
               </div>
@@ -73,10 +85,10 @@ class Register extends React.Component {
                   <span className="btn-inner--text">Google</span>
                 </Button>
               </div>
-            </CardHeader>
+            </CardHeader> */}
             <CardBody className="px-lg-5 py-lg-5">
               <div className="text-center text-muted mb-4">
-                <small>Or sign up with credentials</small>
+                <small>Digite as informações da conta</small>
               </div>
               <Form role="form">
                 <FormGroup>
@@ -86,7 +98,7 @@ class Register extends React.Component {
                         <i className="ni ni-hat-3" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Name" type="text" />
+                    <Input placeholder="Nome" type="text" />
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -99,7 +111,7 @@ class Register extends React.Component {
                     <Input placeholder="Email" type="email" autoComplete="new-email"/>
                   </InputGroup>
                 </FormGroup>
-                <FormGroup>
+                {/* <FormGroup>
                   <InputGroup className="input-group-alternative">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText>
@@ -108,13 +120,13 @@ class Register extends React.Component {
                     </InputGroupAddon>
                     <Input placeholder="Password" type="password" autoComplete="new-password"/>
                   </InputGroup>
-                </FormGroup>
-                <div className="text-muted font-italic">
+                </FormGroup> */}
+                {/* <div className="text-muted font-italic">
                   <small>
                     password strength:{" "}
                     <span className="text-success font-weight-700">strong</span>
                   </small>
-                </div>
+                </div> */}
                 <Row className="my-4">
                   <Col xs="12">
                     <div className="custom-control custom-control-alternative custom-checkbox">
@@ -128,9 +140,9 @@ class Register extends React.Component {
                         htmlFor="customCheckRegister"
                       >
                         <span className="text-muted">
-                          I agree with the{" "}
+                          Eu aceito os termos{" "}
                           <a href="#pablo" onClick={e => e.preventDefault()}>
-                            Privacy Policy
+                            de Politica de Privacidade
                           </a>
                         </span>
                       </label>
@@ -138,8 +150,8 @@ class Register extends React.Component {
                   </Col>
                 </Row>
                 <div className="text-center">
-                  <Button className="mt-4" color="primary" type="button">
-                    Create account
+                  <Button className="mt-4" color="primary"  onClick={this.register} type="button">
+                    Criar Conta
                   </Button>
                 </div>
               </Form>
