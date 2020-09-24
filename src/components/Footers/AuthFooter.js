@@ -36,7 +36,7 @@ class Login extends React.Component {
                   <h4 className="h4" style={{fontSize: '17px'}}>Alessandro Silva</h4>
                   <a
                     className="font-weight-bold ml-1"
-                    href=""
+                    href="https://github.com/alessandrosilva10"
                     target="_blank"
                   >
                     <span className="btn-inner--icon">
@@ -93,7 +93,7 @@ class Login extends React.Component {
                   <h4 className="h4" style={{fontSize: '17px'}}>Rafael Perbeline </h4>
                   <a
                     className="font-weight-bold ml-1"
-                    href=""
+                    href="https://github.com/RafaelPerbelineSupreme"
                     target="_blank"
                   >
                     <span className="btn-inner--icon">
