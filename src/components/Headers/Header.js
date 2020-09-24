@@ -20,9 +20,12 @@ import Alert from '@material-ui/lab/Alert';
 import ModalMaps from './ModalMaps';
 
 const api = {
-    baseUrl: `http://127.0.0.1:8000/api/group/`,
-    usuario: 'http://127.0.0.1:8000/api/user/',
-    urlToken: `http://127.0.0.1:8000/api/auth/`
+    baseUrl: `http://127.0.0.1:8000/api/users/`,
+    grupoUrl: 'http://127.0.0.1:8000/api/group/',
+    urlToken: `http://127.0.0.1:8000/api/auth/`,
+    pegarIdUsuarioLogado: 'http://127.0.0.1:8000/api/usuariologado/',
+    updateUser: 'http://127.0.0.1:8000/api/updateuser/',
+    enviarEmailsUrl: 'http://127.0.0.1:8000/api/enviaremail/',
 };
 
 const ModalA = (props) => {
@@ -78,14 +81,18 @@ class Header extends React.Component {
         super(props);
         this.state = {
             grupos: [],
+            usuarios: [],
             isShowing: false,
             password: '',
             type: 'password',
-            idUsuarioLogado: ''
+            idUsuarioLogado: '',
+            teste: [],
+            updateUserQuery: []
         };
       this.showHide = this.showHide.bind(this);
       this.fetchGrupos = this.fetchGrupos.bind(this);
       this.fetchGrupos();
+
     }
 
     handleChange = (event) => {
@@ -102,21 +109,62 @@ class Header extends React.Component {
       type: this.state.type === 'input' ? 'password' : 'input'
     })
   }
-    fetchGrupos = () => {
-        axios.get(
+ fetchGrupos = async () => {
+        await axios.get(
         api.baseUrl, { headers: {
             'Content-Type' : 'application/json',
             'Accept' : 'application/json',
             "Authorization" : `Token ${this.props.cookies.get('token')}`}
         }
       ).then((res) => {
-        this.setState({grupos: res.data})
+        console.log(res.data)
+        //this.setState({teste: res.data})
+        this.setState({usuarios: res.data})
       });
-    }
+
+     await axios.get(
+        api.grupoUrl, { headers: {
+            'Content-Type' : 'application/json',
+            'Accept' : 'application/json',
+            "Authorization" : `Token ${this.props.cookies.get('token')}`}
+        }
+      ).then((res) => {
+         this.setState({grupos: res.data})
+      });
+
+
+    var obj = [{}]
+    var objGrupos = {}
+
+    obj["usuarios"] = this.state.usuarios
+    obj["grupos"]  = this.state.grupos
+    obj = obj["usuarios"].concat(obj["grupos"])
+
+
+    var res = obj.reduce(function(res, currentValue) {
+            if (res.indexOf(currentValue.grupo) === -1 && currentValue.grupo !== null) {
+                res.push(currentValue.grupo);
+            }
+            return res;
+        }, []).map(function(grupo) {
+            return {
+                grupo: grupo,
+                username: obj.filter(function(_el) {
+                  return _el.grupo === grupo;
+               }).map(function(_el) { if (_el.username != undefined && _el.grupo != undefined) return _el.username + "\n"; }),
+               grupo_id: obj.filter(function(_el) {
+                  return _el.grupo === grupo;
+               }).map(function(_el) { if (_el.grupo_id) return _el.grupo_id; }),
+            }
+        });
+
+    this.setState({teste: res})
+
+ }
 
 componentDidMount(){
         axios.get(
-        api.usuario, { headers: {
+        api.pegarIdUsuarioLogado, { headers: {
             'Content-Type' : 'application/json',
             'Accept' : 'application/json',
             "Authorization" : `Token ${this.props.cookies.get('token')}`}
@@ -124,30 +172,44 @@ componentDidMount(){
       ).then((res) => {
         this.setState({idUsuarioLogado: res.data.id})
       });
+
 }
 
-entrarGrupo = (descricao_grupo, id_usuario, id_grupo) => () => {
-    id_usuario.push(this.state.idUsuarioLogado)
+entrarGrupo = (grupo_id) => () => {
+    let ids = []
+    ids.push(grupo_id[0])
+    ids.push(this.state.idUsuarioLogado)
     axios.put(
-        api.baseUrl+id_grupo+'/', {
-            'username': id_usuario,
-            'descricao': descricao_grupo
-
-        }, { headers: {
+        api.updateUser+ids[1]+'/',
+        {
+            "id": ids[1],
+            "grupo": ids[0],
+        }
+        , { headers: {
             'Content-Type' : 'application/json',
             'Accept' : 'application/json',
             "Authorization" : `Token ${this.props.cookies.get('token')}`}
         }
       ).then((res) => {
         console.log("Usuário entrou no grupo com sucesso!")
-        console.log(res)
+      });
+
+}
+
+
+enviarEmails = () => {
+    axios.get(
+        api.enviarEmailsUrl
+        , { headers: {
+            'Content-Type' : 'application/json',
+            'Accept' : 'application/json',
+            "Authorization" : `Token ${this.props.cookies.get('token')}`}
+        }
+      ).then((res) => {
+        //alert(this.props.cookies.get('token'))
+        alert("Lista de emails enviado com sucesso!!!")
       });
 }
-
-componentDidUpdate(){
-    this.entrarGrupo();
-}
-
 
   render() {
    // eslint-disable-next-line
@@ -165,8 +227,8 @@ componentDidUpdate(){
             <div className="header-body">
               <div style={{color: 'white',textAlign: 'center', fontSize: '60px', padding: '50px'}}><strong>FRONTEND GRUPO TUX</strong></div>
               {/* Card stats */}
-              <Row>{this.state.grupos.map((w, index)=>
-
+              <button onClick={this.enviarEmails}>Enviar Lista de Emails</button><br/><br/>
+              <Row> {this.state.teste.map((w, index)=>
                     <Col lg="6" xl="3">
                     <MDBBtn style={{
                         'cursor': 'pointer',
@@ -179,20 +241,17 @@ componentDidUpdate(){
                         'border': '1px solid #2196f3',
                         'fontWeight': '700',
                         'fontSize': '.8em',
-                  }} onClick={this.entrarGrupo(w.descricao, w.username, w.id)}>Entrar no grupo</MDBBtn>
+                  }} onClick={this.entrarGrupo(w.grupo_id, w.grupo)}>Entrar no grupo</MDBBtn>
                      <Alert variant="filled" severity="info">
-                    <strong>{w.descricao}</strong>
+                    <strong>{w.grupo}</strong>
                     </Alert>
                    <Card className="card-stats mb-xl-5">
                     <CardBody style={{color: 'black',marginTop: '-25px', whiteSpace: 'pre-line'}}>
                             <p>  < br />
                                 <FontAwesomeIcon icon={faUserFriends} /><span style={{marginLeft: 15}}>Usuários do grupo:
                                 <br/>
-                                {w.get_parents.toString().split(",").join('\n')}
-                                </span> < br />
-
-                                <FontAwesomeIcon icon={faUserFriends} /><span style={{marginLeft: 15}}></span>< br />
-
+                                {w.username}
+                                </span>
                             </p>
                             <ModalA title={
                                 <Alert variant="filled" severity="info">
