@@ -46,8 +46,8 @@ class Login extends React.Component {
     }
   }
 
-   sucess = () => toast.success("Usuário logado com sucesso!");
-   warning = () => toast.warning("Usuário não autenticado!");
+  sucess = () => toast.success("Usuário logado com sucesso!");
+  warning = () => toast.warning("Usuário não autenticado!");
 
   inputChange = event => {
     let credentials = this.state.credentials;
@@ -137,7 +137,7 @@ class Login extends React.Component {
                         <i className="ni ni-email-83" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Username" name="username" onChange={this.inputChange} type="text"/>
+                    <Input placeholder="Email" name="email" onChange={this.inputChange} type="text"/>
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
