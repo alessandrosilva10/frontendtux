@@ -28,10 +28,12 @@ import routes from "routes.js";
 
 class Auth extends React.Component {
   componentDidMount() {
-    document.body.classList.add("bg-default");
+    // document.body.classList.add("bg-gradient-purple");
+    document.body.classList.add("bg-gradient-purple");
   }
   componentWillUnmount() {
-    document.body.classList.remove("bg-default");
+    // document.body.classList.remove("bg-default");
+    document.body.classList.remove("bg-gradient-purple");
   }
   getRoutes = routes => {
     return routes.map((prop, key) => {
@@ -53,7 +55,7 @@ class Auth extends React.Component {
       <>
         <div className="main-content">
           <AuthNavbar />
-          <div className="header bg-gradient-info py-7 py-lg-8">
+          <div className="header bg-gradient-purple py-7 py-lg-8">
             <Container>
               <div className="header-body text-center mb-7">
                 <Row className="justify-content-center">
@@ -63,7 +65,7 @@ class Auth extends React.Component {
                 </Row>
               </div>
             </Container>
-            <div className="separator separator-bottom separator-skew zindex-100">
+            {/* <div className="separator separator-bottom separator-skew zindex-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 preserveAspectRatio="none"
@@ -77,7 +79,7 @@ class Auth extends React.Component {
                   points="2560 0 2560 100 0 100"
                 />
               </svg>
-            </div>
+            </div> */}
           </div>
           {/* Page content */}
           <Container className="mt--8 pb-5">

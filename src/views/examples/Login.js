@@ -46,8 +46,8 @@ class Login extends React.Component {
     }
   }
 
-   sucess = () => toast.success("Usuário logado com sucesso!");
-   warning = () => toast.warning("Usuário não autenticado!");
+  sucess = () => toast.success("Usuário logado com sucesso!");
+  warning = () => toast.warning("Usuário não autenticado!");
 
   inputChange = event => {
     let credentials = this.state.credentials;
@@ -88,7 +88,7 @@ class Login extends React.Component {
       <>
         <Col lg="5" md="7">
           <Card className="bg-card shadow border-0">
-            <CardHeader className="bg-transparent pb-5">
+            {/* <CardHeader className="bg-transparent pb-5">
               <div className="text-muted text-center mt-2 mb-3">
                 <small>Faça o login com</small>
               </div>
@@ -122,10 +122,10 @@ class Login extends React.Component {
                   <span className="btn-inner--text">Google</span>
                 </Button>
               </div>
-            </CardHeader>
+            </CardHeader> */}
             <CardBody className="px-lg-5 py-lg-5">
               <div className="text-center text-muted mb-4">
-                <small>Ou faça o login com o seu usuário/senha</small>
+                <small>Faça o login com o seu usuário/senha</small>
               </div>
               <Form role="form" method="POST">
                 <FormGroup className="mb-3">
@@ -135,7 +135,7 @@ class Login extends React.Component {
                         <i className="ni ni-email-83" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Username" name="username" onChange={this.inputChange} type="text"/>
+                    <Input placeholder="Email" name="email" onChange={this.inputChange} type="text"/>
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -148,7 +148,7 @@ class Login extends React.Component {
                     <Input placeholder="Senha" name="password" onChange={this.inputChange}  type="password"/>
                   </InputGroup>
                 </FormGroup>
-                <div className="custom-control custom-control-alternative custom-checkbox">
+                {/* <div className="custom-control custom-control-alternative custom-checkbox">
                   <input
                     className="custom-control-input"
                     id=" customCheckLogin"
@@ -160,7 +160,7 @@ class Login extends React.Component {
                   >
                     <span className="text-muted">Lembrar</span>
                   </label>
-                </div>
+                </div> */}
 
               </Form>
                <div className="text-center">

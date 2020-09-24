@@ -16,6 +16,8 @@
 
 */
 import React from "react";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 // reactstrap components
 import {
@@ -38,6 +40,7 @@ import { withCookies } from "react-cookie";
 
 class Register extends React.Component {
 
+<<<<<<< HEAD
   state = {
     credentials: {
       name: '',
@@ -80,12 +83,28 @@ inputChange = event => {
     })
   }
 
+=======
+
+  sucess = () => toast.success("Usuário logado com sucesso!");
+  warning = () => toast.warning("Usuário não autenticado!");
+
+  register = event => {
+    
+  }
+
+
+>>>>>>> 99b796873f2257e67fecbdf5035348d1f619aa50
   render() {
     return (
       <>
         <Col lg="6" md="8">
+<<<<<<< HEAD
           <Card className="bg-white shadow border-1 card">
             <CardHeader className="bg-transparent pb-5">
+=======
+          <Card className="bg-secondary shadow border-0">
+            {/* <CardHeader className="bg-transparent pb-5">
+>>>>>>> 99b796873f2257e67fecbdf5035348d1f619aa50
               <div className="text-muted text-center mt-2 mb-4">
                 <small>Sign up with</small>
               </div>
@@ -119,10 +138,10 @@ inputChange = event => {
                   <span className="btn-inner--text">Google</span>
                 </Button>
               </div>
-            </CardHeader>
+            </CardHeader> */}
             <CardBody className="px-lg-5 py-lg-5">
               <div className="text-center text-muted mb-4">
-                <small>Or sign up with credentials</small>
+                <small>Digite as informações da conta</small>
               </div>
               <Form role="form">
                 <FormGroup>
@@ -132,7 +151,11 @@ inputChange = event => {
                         <i className="ni ni-hat-3" />
                       </InputGroupText>
                     </InputGroupAddon>
+<<<<<<< HEAD
                     <Input placeholder="Nome" name="name" type="text" onChange={this.inputChange} />
+=======
+                    <Input placeholder="Nome" type="text" />
+>>>>>>> 99b796873f2257e67fecbdf5035348d1f619aa50
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -145,6 +168,25 @@ inputChange = event => {
                     <Input placeholder="Email" name="email" type="email" onChange={this.inputChange} autoComplete="new-email"/>
                   </InputGroup>
                 </FormGroup>
+<<<<<<< HEAD
+=======
+                {/* <FormGroup>
+                  <InputGroup className="input-group-alternative">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="ni ni-lock-circle-open" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input placeholder="Password" type="password" autoComplete="new-password"/>
+                  </InputGroup>
+                </FormGroup> */}
+                {/* <div className="text-muted font-italic">
+                  <small>
+                    password strength:{" "}
+                    <span className="text-success font-weight-700">strong</span>
+                  </small>
+                </div> */}
+>>>>>>> 99b796873f2257e67fecbdf5035348d1f619aa50
                 <Row className="my-4">
                   <Col xs="12">
                     <div className="custom-control custom-control-alternative custom-checkbox">
@@ -158,9 +200,9 @@ inputChange = event => {
                         htmlFor="customCheckRegister"
                       >
                         <span className="text-muted">
-                          I agree with the{" "}
+                          Eu aceito os termos{" "}
                           <a href="#pablo" onClick={e => e.preventDefault()}>
-                            Privacy Policy
+                            de Politica de Privacidade
                           </a>
                         </span>
                       </label>
@@ -168,8 +210,13 @@ inputChange = event => {
                   </Col>
                 </Row>
                 <div className="text-center">
+<<<<<<< HEAD
                   <Button className="mt-4" onClick={this.login} color="primary" type="button">
                     Create account
+=======
+                  <Button className="mt-4" color="primary"  onClick={this.register} type="button">
+                    Criar Conta
+>>>>>>> 99b796873f2257e67fecbdf5035348d1f619aa50
                   </Button>
                 </div>
               </Form>
