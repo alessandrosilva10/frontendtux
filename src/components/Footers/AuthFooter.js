@@ -27,7 +27,7 @@ class Login extends React.Component {
       <>
         <footer className="py-5 footer">
           <Container>
-            <h3 className="h3" style={{fontSize: '20px'}}>FrontEnd Deselvolvido Por: </h3>
+            <h3 className="h3" style={{fontSize: '20px'}}>FrontEnd Deselvolvido Por Grupo Tux: </h3>
             <br/>
             <Row className="align-items-center justify-content-xl-between">
               <Col xl="2">
