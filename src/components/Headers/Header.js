@@ -160,10 +160,10 @@ componentDidUpdate(){
         return (
     <React.Fragment>
       <>
-        <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
+        <div className="header bg-gradient-purple pb-8 pt-5 pt-md-8">
           <Container fluid>
             <div className="header-body">
-              <div style={{color: 'white',textAlign: 'center', fontSize: '60px', padding: '50px'}}><strong>FRONTEND GRUPO TUX</strong></div>
+              <div style={{color: 'white',textAlign: 'center', fontSize: '60px', padding: '50px'}}><strong>Área de Grupos</strong></div>
               {/* Card stats */}
               <Row>{this.state.grupos.map((w, index)=>
 
@@ -172,11 +172,11 @@ componentDidUpdate(){
                         'cursor': 'pointer',
                         'bottom': '18px',
                         'height': '45x',
-                        'background': '#2196f3',
+                        'background': '#44325d',
                         'color': 'white',
                         'borderRadius': '10px',
-                        'borderColor': '#2196f3',
-                        'border': '1px solid #2196f3',
+                        'borderColor': '#44325d',
+                        'border': '1px solid #44325d',
                         'fontWeight': '700',
                         'fontSize': '.8em',
                   }} onClick={this.entrarGrupo(w.descricao, w.username, w.id)}>Entrar no grupo</MDBBtn>
