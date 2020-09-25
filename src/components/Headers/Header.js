@@ -18,6 +18,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import SpinnerJs from './Spinner';
 import Alert from '@material-ui/lab/Alert';
 import ModalMaps from './ModalMaps';
+// import { CardHeader } from "material-ui";
+import CardHeader from '@material-ui/core/CardHeader';
+// import { View } from "react-native";
+// import Divider from '@material-ui/core/Divider';
 
 const api = {
     // baseUrl: `http://127.0.0.1:8000/api/users/`,
@@ -58,10 +62,23 @@ const ModalA = (props) => {
 
   return (
     <>
+      <br/>
       <MDBBtnGroup style={{'justifyContent': 'center', 'padding': '5px'}}>
-         <Alert variant="filled" severity="info">
-        <strong><span type="submit" onClick={onClick}>Teste do modal</span></strong>
+        <Alert variant="filled" severity="info">
+          <span type="submit" onClick={onClick}><strong>Teste do modal</strong></span>
         </Alert>
+        {/* <span type="submit" onClick={onClick}><MDBBtn style={{
+                        'cursor': 'pointer',
+                        'bottom': '18px',
+                        'height': '45x',
+                        'background': '#2dce89',
+                        'color': 'white',
+                        'borderRadius': '10px',
+                        'borderColor': '#2dce89',
+                        'border': '1px solid #2dce89',
+                        'fontWeight': '700',
+                        'fontSize': '.8em',
+        }}><strong>Teste do modal</strong></MDBBtn></span> */}
       </MDBBtnGroup>
       <Modal show={isOpen} onHide={hideModal} onEntered={modalLoaded}>
         <Modal.Header style={{background: '#2196f3'}} >
@@ -233,25 +250,57 @@ enviarEmails = () => {
             <div className="header-body">
               <div style={{color: 'white',textAlign: 'center', fontSize: '60px', padding: '50px'}}><strong>Área de Grupos</strong></div>
               {/* Card stats */}
-              <button onClick={this.enviarEmails}>Enviar Lista de Emails</button><br/><br/>
+              {/* <button onClick={this.enviarEmails}>Enviar Lista de Emails</button><br/><br/> */}
+              <MDBBtn style={{
+                        'cursor': 'pointer',
+                        'bottom': '18px',
+                        'height': '45x',
+                        'background': '#000000',
+                        'color': 'white',
+                        'borderRadius': '10px',
+                        'borderColor': '#000000',
+                        'border': '1px solid #000000',
+                        'fontWeight': '700',
+                        'fontSize': '.8em',
+              }} onClick={this.enviarEmails}>Enviar Lista de Emails</MDBBtn>
+              <br/>
+              <hr  style={{color: '#ffffff', backgroundColor: '#ffffff', height: .1, borderColor : '#ffffff'}}/>
+              {/* <Divider></Divider> */}
+              <br/>
+              {/* <View style={{borderBottomColor: 'black', borderBottomWidth: 1,}}/> */}
               <Row> {this.state.teste.map((w, index)=>
-                    <Col lg="6" xl="3">
+                    <Col lg="6" xl="6">
                     <MDBBtn style={{
                         'cursor': 'pointer',
                         'bottom': '18px',
                         'height': '45x',
-                        'background': '#44325d',
+                        'background': '#2dce89',
                         'color': 'white',
                         'borderRadius': '10px',
-                        'borderColor': '#44325d',
-                        'border': '1px solid #44325d',
+                        'borderColor': '#2dce89',
+                        'border': '1px solid #2dce89',
                         'fontWeight': '700',
                         'fontSize': '.8em',
                   }} onClick={this.entrarGrupo(w.grupo_id, w.grupo)}>Entrar no grupo</MDBBtn>
-                     <Alert variant="filled" severity="info">
-                    <strong>{w.grupo}</strong>
-                    </Alert>
-                   <Card className="card-stats mb-xl-5">
+
+                  <MDBBtn style={{
+                        'cursor': 'pointer',
+                        'bottom': '18px',
+                        'height': '45x',
+                        'background': '#f5365c',
+                        'color': 'white',
+                        'borderRadius': '10px',
+                        'borderColor': '#f5365c',
+                        'border': '1px solid #f5365c',
+                        'fontWeight': '700',
+                        'fontSize': '.8em',
+                  }} onClick={this.entrarGrupo(w.grupo_id, w.grupo)}>Sair do grupo</MDBBtn>
+                    {/* <Alert variant="filled" severity="info">
+                      <strong>{w.grupo}</strong>
+                    </Alert> */}
+                   <Card className="card-stats mb-xl-5" style={{border: '1px solid #000000', boxShadow: '16px 12px 22px 1px rgba(0,0,0,0.34)'}}>
+                    <CardHeader title={w.grupo} style={{backgroundColor: '#000000', color: 'white', textAlign: 'center'}}/>
+                    {/* <hr  style={{color: '#000000', backgroundColor: '#000000', height: .1, borderColor : '#000000'}}/> */}
                     <CardBody style={{color: 'black',marginTop: '-25px', whiteSpace: 'pre-line'}}>
                             <p>  < br />
                                 <FontAwesomeIcon icon={faUserFriends} /><span style={{marginLeft: 15}}>Usuários do grupo:
