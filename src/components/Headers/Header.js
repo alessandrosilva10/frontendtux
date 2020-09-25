@@ -20,12 +20,12 @@ import Alert from '@material-ui/lab/Alert';
 import ModalMaps from './ModalMaps';
 
 const api = {
-    baseUrl: `http://127.0.0.1:8000/api/users/`,
-    grupoUrl: 'http://127.0.0.1:8000/api/group/',
-    urlToken: `http://127.0.0.1:8000/api/auth/`,
-    pegarIdUsuarioLogado: 'http://127.0.0.1:8000/api/usuariologado/',
-    updateUser: 'http://127.0.0.1:8000/api/updateuser/',
-    enviarEmailsUrl: 'http://127.0.0.1:8000/api/enviaremail/',
+    baseUrl: `https://backendso2.herokuapp.com/api/users/`,
+    grupoUrl: 'https://backendso2.herokuapp.com/api/group/',
+    urlToken: `https://backendso2.herokuapp.com/api/auth/`,
+    pegarIdUsuarioLogado: 'https://backendso2.herokuapp.com/api/usuariologado/',
+    updateUser: 'https://backendso2.herokuapp.com/api/updateuser/',
+    enviarEmailsUrl: 'https://backendso2.herokuapp.com/api/enviaremail/',
 };
 
 const ModalA = (props) => {
@@ -91,7 +91,7 @@ class Header extends React.Component {
         };
       this.showHide = this.showHide.bind(this);
       this.fetchGrupos = this.fetchGrupos.bind(this);
-      this.fetchGrupos();
+
 
     }
 
@@ -102,6 +102,9 @@ class Header extends React.Component {
         })
     }
 
+componentDidUpdate(){
+    this.fetchGrupos();
+}
  showHide(e){
     e.preventDefault();
     e.stopPropagation();
@@ -159,7 +162,6 @@ class Header extends React.Component {
         });
 
     this.setState({teste: res})
-
  }
 
 componentDidMount(){
@@ -174,6 +176,7 @@ componentDidMount(){
       });
 
 }
+
 
 entrarGrupo = (grupo_id) => () => {
     let ids = []
@@ -191,9 +194,10 @@ entrarGrupo = (grupo_id) => () => {
             "Authorization" : `Token ${this.props.cookies.get('token')}`}
         }
       ).then((res) => {
-        console.log("Usuário entrou no grupo com sucesso!")
+        this.forceUpdate();
+        alert("Usuário entrou no grupo com sucesso!")
       });
-
+    this.forceUpdate();
 }
 
 

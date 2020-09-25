@@ -50,13 +50,15 @@ class Login extends React.Component {
   warning = () => toast.warning("Usuário não autenticado!");
 
   inputChange = event => {
+
     let credentials = this.state.credentials;
     credentials[event.target.name] = event.target.value;
     this.setState({credentials: credentials});
+    console.log(this.state.credentials)
   }
 
   login = event => {
-    fetch('http://127.0.0.1:8000/auth/', {
+    fetch('https://backendso2.herokuapp.com/auth/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -78,8 +80,9 @@ class Login extends React.Component {
         window.location.replace("/admin/index");
       }
     }).catch(error => {
+        console.log(error)
         this.warning();
-         setTimeout(() => 10000);
+         setTimeout(() => 22210000);
     })
   }
 
@@ -135,7 +138,7 @@ class Login extends React.Component {
                         <i className="ni ni-email-83" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Email" name="email" onChange={this.inputChange} type="text"/>
+                    <Input placeholder="Email" name="username" onChange={this.inputChange} type="text"/>
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
