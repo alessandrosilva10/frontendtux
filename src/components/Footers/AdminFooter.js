@@ -24,8 +24,8 @@ import { Container, Row, Col, Nav, NavItem, NavLink } from "reactstrap";
 class Footer extends React.Component {
   render() {
     return (
-      <footer className="footer">
-                  <Container>
+      <footer className="py-5 footer">
+          <Container>
             <h3 className="h3" style={{fontSize: '20px'}}>FrontEnd Deselvolvido Por Grupo Tux: </h3>
             <br/>
             <Row className="align-items-center justify-content-xl-between">

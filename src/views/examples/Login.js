@@ -58,7 +58,12 @@ class Login extends React.Component {
   }
 
   login = event => {
+<<<<<<< HEAD
     fetch('https://backendso2.herokuapp.com/auth/', {
+=======
+    // fetch('http://127.0.0.1:8000/auth/', {
+    fetch('https://backendso2.herokuapp.com/auth/', {  
+>>>>>>> 663b7a1ce9e5f0342d4e3f0cc69e029afcc5cc93
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -71,6 +76,7 @@ class Login extends React.Component {
     })
     .then(res => res.json()).then(res => {
     let token = res.token;
+    console.log(token);
     this.props.cookies.set('token', token, { path: '/' });
     token = this.props.cookies.get('token');
       if(token === null || token === 'undefined'){
@@ -167,7 +173,7 @@ class Login extends React.Component {
 
               </Form>
                <div className="text-center">
-                  <Button className="" color="primary" onClick={this.login} type="text" >
+                  <Button className="" color="primary" onClick={this.login} type="button" >
                     Logar
                   </Button>
                   <ToastContainer />

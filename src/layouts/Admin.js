@@ -82,6 +82,7 @@ class Admin extends React.Component {
             <Redirect from="*" to="/admin/index" />
           </Switch>
           <Container fluid>
+            <br/>
             <AdminFooter />
           </Container>
         </div>
