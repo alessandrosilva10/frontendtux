@@ -20,12 +20,18 @@ import Alert from '@material-ui/lab/Alert';
 import ModalMaps from './ModalMaps';
 
 const api = {
-    baseUrl: `http://127.0.0.1:8000/api/users/`,
-    grupoUrl: 'http://127.0.0.1:8000/api/group/',
-    urlToken: `http://127.0.0.1:8000/api/auth/`,
-    pegarIdUsuarioLogado: 'http://127.0.0.1:8000/api/usuariologado/',
-    updateUser: 'http://127.0.0.1:8000/api/updateuser/',
-    enviarEmailsUrl: 'http://127.0.0.1:8000/api/enviaremail/',
+    // baseUrl: `http://127.0.0.1:8000/api/users/`,
+    // grupoUrl: 'http://127.0.0.1:8000/api/group/',
+    // urlToken: `http://127.0.0.1:8000/api/auth/`,
+    // pegarIdUsuarioLogado: 'http://127.0.0.1:8000/api/usuariologado/',
+    // updateUser: 'http://127.0.0.1:8000/api/updateuser/',
+    // enviarEmailsUrl: 'http://127.0.0.1:8000/api/enviaremail/',
+    baseUrl: `https://backendso2.herokuapp.com/api/users/`,
+    grupoUrl: 'https://backendso2.herokuapp.com/api/group/',
+    urlToken: `https://backendso2.herokuapp.com/auth/`,
+    pegarIdUsuarioLogado: 'https://backendso2.herokuapp.com/api/usuariologado/',
+    updateUser: 'https://backendso2.herokuapp.com/api/updateuser/',
+    enviarEmailsUrl: 'https://backendso2.herokuapp.com/api/enviaremail/'
 };
 
 const ModalA = (props) => {

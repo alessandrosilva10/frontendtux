@@ -48,7 +48,7 @@ inputChange = event => {
     this.setState({credentials: credentials});
 }
 
-  login = event => {
+  register = event => {
     fetch('http://127.0.0.1:8000/api/users/', {
       method: 'POST',
       headers: {
@@ -181,7 +181,7 @@ inputChange = event => {
                   </Col>
                 </Row>
                 <div className="text-center">
-                  <Button className="mt-4" onClick={this.login} color="primary" type="button">
+                  <Button className="mt-4" onClick={this.register} color="primary" type="button">
                     Criar Conta
                   </Button>
                 </div>
