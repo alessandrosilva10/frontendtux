@@ -40,14 +40,6 @@ import CardHeader from "@material-ui/core/CardHeader";
 // import Divider from '@material-ui/core/Divider';
 
 const api = {
-<<<<<<< HEAD
-    baseUrl: `https://backendso2.herokuapp.com/api/users/`,
-    grupoUrl: 'https://backendso2.herokuapp.com/api/group/',
-    urlToken: `https://backendso2.herokuapp.com/api/auth/`,
-    pegarIdUsuarioLogado: 'https://backendso2.herokuapp.com/api/usuariologado/',
-    updateUser: 'https://backendso2.herokuapp.com/api/updateuser/',
-    enviarEmailsUrl: 'https://backendso2.herokuapp.com/api/enviaremail/',
-=======
   // baseUrl: `http://127.0.0.1:8000/api/users/`,
   // grupoUrl: 'http://127.0.0.1:8000/api/group/',
   // urlToken: `http://127.0.0.1:8000/api/auth/`,
@@ -60,7 +52,6 @@ const api = {
   pegarIdUsuarioLogado: "https://backendso2.herokuapp.com/api/usuariologado/",
   updateUser: "https://backendso2.herokuapp.com/api/updateuser/",
   enviarEmailsUrl: "https://backendso2.herokuapp.com/api/enviaremail/",
->>>>>>> 663b7a1ce9e5f0342d4e3f0cc69e029afcc5cc93
 };
 
 const ModalA = (props) => {
@@ -131,23 +122,6 @@ class Header extends React.Component {
     return s.charAt(0).toUpperCase() + s.slice(1);
   };
 
-<<<<<<< HEAD
-      constructor(props) {
-        super(props);
-        this.state = {
-            grupos: [],
-            usuarios: [],
-            isShowing: false,
-            password: '',
-            type: 'password',
-            idUsuarioLogado: '',
-            teste: [],
-            updateUserQuery: []
-        };
-      this.showHide = this.showHide.bind(this);
-      this.fetchGrupos = this.fetchGrupos.bind(this);
-
-=======
   constructor(props) {
     super(props);
     this.state = {
@@ -165,9 +139,8 @@ class Header extends React.Component {
     this.decrement = this.decrement.bind(this);
     this.showHide = this.showHide.bind(this);
     this.fetchGrupos = this.fetchGrupos.bind(this);
-    this.fetchGrupos();
+    //this.fetchGrupos();
   }
->>>>>>> 663b7a1ce9e5f0342d4e3f0cc69e029afcc5cc93
 
   increment() {
     // this.setState((prevState) => {
@@ -202,12 +175,6 @@ class Header extends React.Component {
     });
   };
 
-<<<<<<< HEAD
-componentDidUpdate(){
-    this.fetchGrupos();
-}
- showHide(e){
-=======
   setSte = (event) => {
     console.log(event);
     console.log(event.target.value);
@@ -215,7 +182,6 @@ componentDidUpdate(){
   };
 
   showHide(e) {
->>>>>>> 663b7a1ce9e5f0342d4e3f0cc69e029afcc5cc93
     e.preventDefault();
     e.stopPropagation();
     this.setState({
@@ -251,34 +217,12 @@ componentDidUpdate(){
         // for(let g of res.data){
         //   console.log(g);
 
-<<<<<<< HEAD
-    var res = obj.reduce(function(res, currentValue) {
-            if (res.indexOf(currentValue.grupo) === -1 && currentValue.grupo !== null) {
-                res.push(currentValue.grupo);
-            }
-            return res;
-        }, []).map(function(grupo) {
-            return {
-                grupo: grupo,
-                username: obj.filter(function(_el) {
-                  return _el.grupo === grupo;
-               }).map(function(_el) { if (_el.username != undefined && _el.grupo != undefined) return _el.username + "\n"; }),
-               grupo_id: obj.filter(function(_el) {
-                  return _el.grupo === grupo;
-               }).map(function(_el) { if (_el.grupo_id) return _el.grupo_id; }),
-            }
-        });
-
-    this.setState({teste: res})
- }
-=======
         // }
         this.setState({ grupos: res.data });
       });
 
     var obj = [{}];
     var objGrupos = {};
->>>>>>> 663b7a1ce9e5f0342d4e3f0cc69e029afcc5cc93
 
     obj["usuarios"] = this.state.usuarios;
     obj["grupos"] = this.state.grupos;
@@ -319,6 +263,11 @@ componentDidUpdate(){
     console.log(this.state.teste);
   };
 
+    componentDidUpdate(){
+        this.fetchGrupos();
+    }
+
+
   componentDidMount() {
     axios
       .get(api.pegarIdUsuarioLogado, {
@@ -333,15 +282,6 @@ componentDidUpdate(){
       });
   }
 
-<<<<<<< HEAD
-
-entrarGrupo = (grupo_id) => () => {
-    let ids = []
-    ids.push(grupo_id[0])
-    ids.push(this.state.idUsuarioLogado)
-    axios.put(
-        api.updateUser+ids[1]+'/',
-=======
   entrarGrupo = (grupo_id) => () => {
     let ids = [];
     ids.push(grupo_id[0]);
@@ -349,7 +289,6 @@ entrarGrupo = (grupo_id) => () => {
     axios
       .put(
         api.updateUser + ids[1] + "/",
->>>>>>> 663b7a1ce9e5f0342d4e3f0cc69e029afcc5cc93
         {
           id: ids[1],
           grupo: ids[0],
@@ -361,25 +300,6 @@ entrarGrupo = (grupo_id) => () => {
             Authorization: `Token ${this.props.cookies.get("token")}`,
           },
         }
-<<<<<<< HEAD
-      ).then((res) => {
-        this.forceUpdate();
-        alert("Usuário entrou no grupo com sucesso!")
-      });
-    this.forceUpdate();
-}
-
-
-enviarEmails = () => {
-    axios.get(
-        api.enviarEmailsUrl
-        , { headers: {
-            'Content-Type' : 'application/json',
-            'Accept' : 'application/json',
-            "Authorization" : `Token ${this.props.cookies.get('token')}`}
-        }
-      ).then((res) => {
-=======
       )
       .then((res) => {
         console.log("Usuário entrou no grupo com sucesso!");
@@ -396,7 +316,6 @@ enviarEmails = () => {
         },
       })
       .then((res) => {
->>>>>>> 663b7a1ce9e5f0342d4e3f0cc69e029afcc5cc93
         //alert(this.props.cookies.get('token'))
         alert("Lista de emails enviado com sucesso!!!");
       });
@@ -544,7 +463,7 @@ enviarEmails = () => {
                         >
                           <CardHeader
                             // classes={{
-                            //   subheader: 
+                            //   subheader:
                             // }}
                             title={w.grupo}
                             // subheader=""
@@ -575,7 +494,7 @@ enviarEmails = () => {
                               </span>
                             </p>
                             <label>
-                              Grupo Aberto?&nbsp; 
+                              Grupo Aberto?&nbsp;
                               <input
                                 name="isOpenGroup"
                                 type="checkbox"

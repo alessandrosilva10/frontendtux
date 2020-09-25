@@ -1,19 +1,13 @@
 /*!
-
 =========================================================
 * Argon Dashboard React - v1.1.0
 =========================================================
-
 * Product Page: https://www.creative-tim.com/product/argon-dashboard-react
 * Copyright 2019 Creative Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
 * Coded by Creative Tim
-
 =========================================================
-
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
 */
 import React from "react";
 import { withCookies } from "react-cookie";
@@ -58,12 +52,8 @@ class Login extends React.Component {
   }
 
   login = event => {
-<<<<<<< HEAD
     fetch('https://backendso2.herokuapp.com/auth/', {
-=======
     // fetch('http://127.0.0.1:8000/auth/', {
-    fetch('https://backendso2.herokuapp.com/auth/', {  
->>>>>>> 663b7a1ce9e5f0342d4e3f0cc69e029afcc5cc93
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -207,4 +197,3 @@ class Login extends React.Component {
 }
 
 export default withCookies(Login);
-
