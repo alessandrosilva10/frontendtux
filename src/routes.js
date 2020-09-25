@@ -25,18 +25,12 @@ import Icons from "views/examples/Icons.js";
 
 var routes = [
   {
-    path: "/",
+    path: "/login",
     name: "Teste",
     icon: "ni ni-tv-2 text-primary",
     component: Login,
     layout: "/auth"
-  },{
-    path: "/login",
-    name: "Teste",
-    icon: "ni ni-key-25 text-info",
-    component: Login,
-    layout: "/auth"
-    },
+  },
     {
     path: "/index",
     nname: "Teste",
@@ -74,7 +68,7 @@ var routes = [
   },
   {
     path: "/register",
-    nname: "Teste",
+    name: "register",
     icon: "ni ni-circle-08 text-pink",
     component: Register,
     layout: "/auth"

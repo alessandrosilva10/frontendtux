@@ -69,19 +69,17 @@ class Login extends React.Component {
     })
     .then(res => res.json()).then(res => {
     let token = res.token;
-    alert(token)
     this.props.cookies.set('token', token, { path: '/' });
     token = this.props.cookies.get('token');
       if(token === null || token === 'undefined'){
-        alert(token)
         window.location.replace("/auth/login");
         this.warning()
       }else{
         window.location.replace("/admin/index");
       }
-         this.warning();
     }).catch(error => {
-
+        this.warning();
+         setTimeout(() => 10000);
     })
   }
 

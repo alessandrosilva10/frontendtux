@@ -24,3 +24,5 @@ export class ReactGoogleMaps extends Component {
 export default GoogleApiWrapper({
   apiKey: 'CENSORED'
 })(ReactGoogleMaps)
+
+//https://stackoverflow.com/questions/58298948/django-manytomanyfield-unique-item
