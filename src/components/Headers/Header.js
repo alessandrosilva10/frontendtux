@@ -139,7 +139,7 @@ class Header extends React.Component {
     this.decrement = this.decrement.bind(this);
     this.showHide = this.showHide.bind(this);
     this.fetchGrupos = this.fetchGrupos.bind(this);
-    this.fetchGrupos();
+    //this.fetchGrupos();
   }
 
   increment() {
@@ -199,7 +199,6 @@ class Header extends React.Component {
         },
       })
       .then((res) => {
-        console.log(res.data);
         //this.setState({teste: res.data})
         this.setState({ usuarios: res.data });
       });
@@ -213,7 +212,6 @@ class Header extends React.Component {
         },
       })
       .then((res) => {
-        console.log(res.data);
         this.setState({ grupos: res.data });
       });
 
@@ -223,7 +221,7 @@ class Header extends React.Component {
     obj["usuarios"] = this.state.usuarios;
     obj["grupos"] = this.state.grupos;
     obj = obj["usuarios"].concat(obj["grupos"]);
-    console.log(obj);
+
     var res = obj
       .reduce(function (res, currentValue) {
         if (
@@ -257,6 +255,14 @@ class Header extends React.Component {
     this.setState({ teste: res });
   };
 
+
+componentDidUpdate(prevProps, prevState) {
+  if (!prevState.length){
+    this.fetchGrupos();
+  }
+}
+
+
  componentDidMount() {
  toast.success("Usuário logado com sucesso!");
     axios
@@ -289,8 +295,7 @@ class Header extends React.Component {
         }
       )
       .then((res) => {
-        alert("Usuário saiu no grupo com sucesso!");
-        window.location.reload()
+        toast.warning("Usuário saiu no grupo com sucesso!");
       });
   }
 
@@ -314,8 +319,7 @@ class Header extends React.Component {
         }
       )
       .then((res) => {
-        alert("Usuário entrou no grupo com sucesso!");
-        window.location.reload()
+        toast.warning("Usuário entrou no grupo com sucesso!");
       });
   };
 
@@ -337,7 +341,6 @@ class Header extends React.Component {
   render() {
     // eslint-disable-next-line
     const { loading } = this.state;
-    console.log(this.props.cookies.get("token"));
     if (
       this.props.cookies.get("token") === null ||
       this.props.cookies.get("token") === "undefined"
