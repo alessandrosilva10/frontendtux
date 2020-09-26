@@ -135,7 +135,7 @@ class Header extends React.Component {
     this.decrement = this.decrement.bind(this);
     this.showHide = this.showHide.bind(this);
     this.fetchGrupos = this.fetchGrupos.bind(this);
-    //this.fetchGrupos();
+    this.fetchGrupos();
   }
 
   increment() {
@@ -217,7 +217,7 @@ class Header extends React.Component {
     obj["usuarios"] = this.state.usuarios;
     obj["grupos"] = this.state.grupos;
     obj = obj["usuarios"].concat(obj["grupos"]);
-
+    console.log(obj)
     var res = obj
       .reduce(function (res, currentValue) {
         if (
@@ -265,12 +265,14 @@ class Header extends React.Component {
 
     this.setState({ teste: res });
   };
-
-
-componentDidUpdate() {
+/*
+componentDidUpdate(prevProps) {
+    console.log("teste")
+  // Typical usage (don't forget to compare props):
+  if (prevProps !== this.state)  {
     this.fetchGrupos();
-}
-
+  }
+}*/
 
  componentDidMount() {
  toast.success("Usuário logado com sucesso!");
@@ -287,7 +289,7 @@ componentDidUpdate() {
       });
   }
 
-  sairGrupo = () => {
+  sairGrupo = (forcedReload) => {
     axios
       .put(
         api.updateUser + this.state.idUsuarioLogado + "/",
@@ -305,11 +307,13 @@ componentDidUpdate() {
       )
       .then((res) => {
         toast.warning("Usuário saiu no grupo com sucesso!");
+        window.location.reload(forcedReload);
       });
   }
 
-  entrarGrupo = (grupo_id) => () => {
+  entrarGrupo = (grupo_id, forcedReload) => () => {
     let ids = [];
+    console.log(grupo_id)
     ids.push(grupo_id[0]);
     ids.push(this.state.idUsuarioLogado);
     axios
@@ -329,6 +333,7 @@ componentDidUpdate() {
       )
       .then((res) => {
         toast.warning("Usuário entrou no grupo com sucesso!");
+        window.location.reload(forcedReload);
       });
   };
 
