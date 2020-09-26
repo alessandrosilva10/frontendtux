@@ -369,10 +369,10 @@ componentDidUpdate() {
                       cursor: "pointer",
                       bottom: "18px",
                       height: "45x",
-                      background: "#000000",
+                      background: 'rgba(140, 20, 252, 1)',
                       color: "white",
                       borderRadius: "10px",
-                      borderColor: "#000000",
+                      borderColor: 'rgba(140, 20, 252, 1)',
                       border: "1px solid #000000",
                       fontWeight: "700",
                       fontSize: ".8em",
@@ -387,11 +387,11 @@ componentDidUpdate() {
                       cursor: "pointer",
                       bottom: "18px",
                       height: "45x",
-                      background: "#ffffff",
-                      color: "black",
+                      background: 'rgba(140, 20, 252, 1)',
+                      color: "white",
                       borderRadius: "10px",
-                      borderColor: "#ffffff",
-                      border: "1px solid #ffffff",
+                      borderColor: 'rgba(140, 20, 252, 1)',
+                      border: "1px solid #000000",
                       fontWeight: "700",
                       fontSize: ".8em",
                     }}
@@ -485,7 +485,7 @@ componentDidUpdate() {
                             title={w.grupo}
                             // subheader=""
                             style={{
-                              backgroundColor: rgba(140, 20, 252, 1),
+                              backgroundColor: 'rgba(140, 20, 252, 1)',
                               color: "white",
                               textAlign: "center",
                             }}
