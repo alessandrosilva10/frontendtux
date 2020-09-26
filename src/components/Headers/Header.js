@@ -237,10 +237,10 @@ class Header extends React.Component {
           grupo: grupo,
           username: obj
             .filter(function (_el) {
-              return _el.grupo === grupo;
+              return _el.grupo === grupo && _el.username !== undefined;
             })
             .map(function (_el) {
-              if (_el.username != undefined && _el.grupo != undefined)
+              if (_el.username)
                 return _el.username + "\n";
             }),
           grupo_id: obj
@@ -250,8 +250,23 @@ class Header extends React.Component {
             .map(function (_el) {
               if (_el.grupo_id) return _el.grupo_id;
             }),
+            quantidade_usuarios: obj
+            .filter(function (_el) {
+              return _el.grupo === grupo && _el.quantidade_usuarios !== undefined;
+            })
+            .map(function (_el) {
+              if (_el.quantidade_usuarios) return _el.quantidade_usuarios;
+            }),
+            isGrupoAberto: obj
+            .filter(function (_el) {
+              return _el.grupo === grupo && _el.quantidade_usuarios !== undefined;
+            })
+            .map(function (_el) {
+              if (_el.isGrupoOpen) return _el.isGrupoOpen;
+            }),
         };
       });
+          console.log(res)
     this.setState({ teste: res });
   };
 
