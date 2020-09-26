@@ -26,49 +26,49 @@ import Icons from "views/examples/Icons.js";
 var routes = [
   {
     path: "/login",
-    name: "Teste",
+    name: "",
     icon: "ni ni-tv-2 text-primary",
     component: Login,
     layout: "/auth"
   },
     {
     path: "/index",
-    nname: "Teste",
+    nname: "",
     icon: "ni ni-tv-2 text-primary",
     component: Index,
     layout: "/admin"
   },
   {
     path: "/icons",
-    name: "Teste",
+    name: "",
     icon: "ni ni-planet text-blue",
     component: Icons,
     layout: "/admin"
   },
   {
     path: "/maps",
-    nname: "Teste",
+    nname: "",
     icon: "ni ni-pin-3 text-orange",
     component: Maps,
     layout: "/admin"
   },
   {
     path: "/user-profile",
-    name: "Teste",
+    name: "",
     icon: "ni ni-single-02 text-yellow",
     component: Profile,
     layout: "/admin"
   },
   {
     path: "/tables",
-    name: "Teste",
+    name: "",
     icon: "ni ni-bullet-list-67 text-red",
     component: Tables,
     layout: "/admin"
   },
   {
     path: "/register",
-    name: "register",
+    name: "",
     icon: "ni ni-circle-08 text-pink",
     component: Register,
     layout: "/auth"

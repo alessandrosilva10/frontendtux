@@ -381,6 +381,7 @@ class Header extends React.Component {
                     Enviar Lista de Emails
                   </MDBBtn>
                   <MDBBtn
+                  onClick={this.onClick}
                     style={{
                       cursor: "pointer",
                       bottom: "18px",
@@ -394,6 +395,7 @@ class Header extends React.Component {
                       fontSize: ".8em",
                     }}
                   >
+
                     Criar Novo Grupo
                   </MDBBtn>
                   <br />
