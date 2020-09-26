@@ -58,7 +58,7 @@ class AdminNavbar extends React.Component {
   componentDidMount() {
     //fetch data
     // fetch('http://127.0.0.1:8000/api/users/', {
-    fetch("https://backendso2.herokuapp.com/api/users/", {
+   /* fetch("https://backendso2.herokuapp.com/api/users/", {
       method: "GET",
       headers: {
         Authorization: "Token 9f3c999cc4dd381f0f0e9e858dd10ffc4189464e",
@@ -70,7 +70,7 @@ class AdminNavbar extends React.Component {
           console.log(this.state.user);
         })
       )
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error));*/
   }
 
   render() {

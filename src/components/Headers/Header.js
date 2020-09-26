@@ -266,7 +266,7 @@ class Header extends React.Component {
             }),
         };
       });
-          console.log(res)
+
     this.setState({ teste: res });
   };
 
@@ -429,7 +429,7 @@ componentDidUpdate() {
                   <Row>
                     {" "}
                     {this.state.teste.map((w, index) => (
-                      <Col lg="6" xl="6">
+                      <Col lg="6" xl="6" key={index}>
                         <MDBBtn
                           style={{
                             cursor: "pointer",
