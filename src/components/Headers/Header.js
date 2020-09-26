@@ -79,24 +79,20 @@ const ModalA = (props) => {
   return (
     <>
       <br />
-      <MDBBtnGroup style={{ justifyContent: "center", padding: "5px" }}>
-        <Alert variant="filled" severity="info">
-          <span type="submit" onClick={onClick}>
-            <strong>Teste do modal</strong>
-          </span>
-        </Alert>
-        {/* <span type="submit" onClick={onClick}><MDBBtn style={{
-                        'cursor': 'pointer',
-                        'bottom': '18px',
-                        'height': '45x',
-                        'background': '#2dce89',
-                        'color': 'white',
-                        'borderRadius': '10px',
-                        'borderColor': '#2dce89',
-                        'border': '1px solid #2dce89',
-                        'fontWeight': '700',
-                        'fontSize': '.8em',
-        }}><strong>Teste do modal</strong></MDBBtn></span> */}
+      <MDBBtnGroup >
+        {<span type="submit" onClick={onClick}><MDBBtn style={{
+                      cursor: "pointer",
+                      bottom: "18px",
+                      height: "45x",
+                      background: 'rgba(140, 20, 252, 1)',
+                      color: "white",
+                      borderRadius: "10px",
+                      borderColor: 'rgba(140, 20, 252, 1)',
+                      border: "1px solid #000000",
+                      fontWeight: "700",
+                      fontSize: ".8em",
+                      marginBottom: '-30px'
+        }}><strong>Criar novo Grupo</strong></MDBBtn></span> }
       </MDBBtnGroup>
       <Modal show={isOpen} onHide={hideModal} onEntered={modalLoaded}>
         <Modal.Header style={{ background: "#2196f3" }}>
@@ -144,7 +140,7 @@ class Header extends React.Component {
 
   increment() {
     // this.setState((prevState) => {
-    //   console.log("increment");
+    //   console.log("increment");ModalA
     //   console.log(prevState);
     //   console.log(prevState.value);
     //   console.log(++prevState.value);
@@ -391,11 +387,19 @@ componentDidUpdate() {
                       border: "1px solid #000000",
                       fontWeight: "700",
                       fontSize: ".8em",
+                      display: 'inline',
+                      marginLeft: '150px',
+                      marginBottom: '-80px'
                     }}
                     onClick={this.enviarEmails}
                   >
                     Enviar Lista de Emails
                   </MDBBtn>
+
+                  <ModalA
+
+                  />
+                           {/*
                   <MDBBtn
                   onClick={this.onClick}
                     style={{
@@ -411,9 +415,9 @@ componentDidUpdate() {
                       fontSize: ".8em",
                     }}
                   >
-
                     Criar Novo Grupo
-                  </MDBBtn>
+                  </MDBBtn>*/}
+
                   <br />
                   <hr
                     style={{
@@ -537,151 +541,7 @@ componentDidUpdate() {
                                 readOnly
                               />
                             </label>
-                            {/* <ModalA
-                              title={
-                                <Alert variant="filled" severity="info">
-                                  <strong>
-                                    <span>Modal Teste</span>
-                                  </strong>
-                                </Alert>
-                              }
-                              body={
-                                <>
-                                  {" "}
-                                  <Card className="card-stats mb-xl-5">
-                                    <p
-                                      style={{
-                                        color: "black",
-                                        marginLeft: "20px",
-                                        marginRight: "20px",
-                                        marginTop: "20px",
-                                      }}
-                                    >
-                                      <FontAwesomeIcon icon={faUserFriends} />
-                                      <span style={{ marginLeft: "15px" }}>
-                                        Nome:{" "}
-                                      </span>{" "}
-                                      <br />
-                                      <FontAwesomeIcon icon={faUserFriends} />
-                                      <span style={{ marginLeft: "15px" }}>
-                                        Nome:{" "}
-                                      </span>{" "}
-                                      <br />
-                                      <FontAwesomeIcon icon={faUserFriends} />
-                                      <span style={{ marginLeft: "15px" }}>
-                                        Nome:{" "}
-                                      </span>{" "}
-                                      <br />
-                                      <FontAwesomeIcon icon={faUserFriends} />
-                                      <span style={{ marginLeft: "15px" }}>
-                                        Nome:{" "}
-                                      </span>{" "}
-                                      <br />
-                                      <FontAwesomeIcon icon={faUserFriends} />
-                                      <span style={{ marginLeft: "20px" }}>
-                                        Nome:{" "}
-                                      </span>{" "}
-                                      <br />
-                                      <FontAwesomeIcon icon={faUserFriends} />
-                                      <span style={{ marginLeft: "15px" }}>
-                                        Nome:{" "}
-                                      </span>{" "}
-                                      <br />
-                                      <FontAwesomeIcon icon={faUserFriends} />
-                                      <span style={{ marginLeft: "15px" }}>
-                                        Nome:{" "}
-                                      </span>{" "}
-                                      <br />
-                                      <hr />
-                                      <label htmlFor="body">Teste</label>
-                                      <br />
-                                      <input
-                                        type={this.state.type}
-                                        id="password__input"
-                                        name="password__input"
-                                        className="password__input"
-                                        onChange={this.handleChange}
-                                      />
-                                      <span
-                                        style={{
-                                          cursor: "pointer",
-                                          position: "absolute",
-                                          bottom: "18px",
-                                          height: "28px",
-                                          background: "#2196f3",
-                                          color: "white",
-                                          marginLeft: "10px",
-                                          padding: "4px 8px",
-                                          borderRadius: "4px",
-                                          fontWeight: "700",
-                                          fontSize: ".8em",
-                                        }}
-                                        className="password__show"
-                                        onClick={this.showHide}
-                                      >
-                                        {this.state.type === "input"
-                                          ? "Esconder"
-                                          : "Mostrar"}
-                                      </span>
-                                    </p>
-                                  </Card>
-                                  <div
-                                    style={{
-                                      marginTop: "-20px",
-                                    }}
-                                  >
-                                    <SpinnerJs
-                                      title="Botão 1"
-                                      password={this.state.password}
-                                      api="http://localhost:8000/api/senhawpa2/"
-                                      style={{
-                                        cursor: "pointer",
-                                        background: "#2196f3",
-                                        color: "white",
-                                        borderRadius: "5px",
-                                        fontWeight: "700",
-                                        fontSize: ".8em",
-                                        borderColor: "#2196f3",
-                                        border: "5px solid #2196f3",
-                                        marginLeft: "10px",
-                                      }}
-                                    />
-                                    <SpinnerJs
-                                      title="Botão 2"
-                                      api="http://localhost:8000/api/wifiphishing/"
-                                      style={{
-                                        cursor: "pointer",
-                                        background: "#2196f3",
-                                        color: "white",
-                                        borderRadius: "5px",
-                                        fontWeight: "700",
-                                        fontSize: ".8em",
-                                        borderColor: "#2196f3",
-                                        border: "5px solid #2196f3",
-                                        marginTop: "10px",
-                                        marginLeft: "10px",
-                                      }}
-                                    />
-                                    <ModalMaps
-                                      style={{
-                                        cursor: "pointer",
-                                        background: "#2196f3",
-                                        color: "white",
-                                        borderRadius: "5px",
-                                        fontWeight: "700",
-                                        fontSize: ".8em",
-                                        borderColor: "#2196f3",
-                                        border: "5px solid #2196f3",
-                                        marginTop: "5px",
-                                        marginLeft: "10px",
-                                      }}
-                                      title="Localização do alvo pelo Google Maps"
-                                    />
-                                  </div>
-                                </>
-                              }
-                            />
-                            <ToastContainer /> */}
+                            <ToastContainer />
                           </CardBody>
                           <div className="quantity-input">
                             <button
