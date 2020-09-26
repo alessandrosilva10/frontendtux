@@ -256,10 +256,8 @@ class Header extends React.Component {
   };
 
 
-componentDidUpdate(prevProps, prevState) {
-  if (!prevState.length){
+componentDidUpdate() {
     this.fetchGrupos();
-  }
 }
 
 

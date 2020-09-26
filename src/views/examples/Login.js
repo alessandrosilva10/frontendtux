@@ -69,8 +69,8 @@ class Login extends React.Component {
     console.log(token);
     this.props.cookies.set('token', token, { path: '/' });
     token = this.props.cookies.get('token');
-      if(token === null || token === 'undefined'){
-        this.warning()
+      if(token === null || token === 'undefined' || token === undefined){
+        toast.warning("Usuário não autenticado!");
       }else{
         window.location.replace("/admin/index");
       }
@@ -165,7 +165,7 @@ class Login extends React.Component {
                   <Button className="" color="primary" onClick={this.login} type="button" >
                     Logar
                   </Button>
-                  {/*<ToastContainer />*/}
+                  <ToastContainer />
                </div>
             </CardBody>
           </Card>
