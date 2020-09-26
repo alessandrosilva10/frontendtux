@@ -46,7 +46,7 @@ class Index extends React.Component {
     warning = () => toast.warning("Usuário não autenticado!");
 
   componentDidMount(){
-       this.sucess()
+     /*  this.sucess()
         fetch('http://127.0.0.1:8000/api/wifi/', {
         method: 'GET',
         headers: {
@@ -55,7 +55,7 @@ class Index extends React.Component {
       }).then( resp => resp.json()).then( res => this.setState({wireless: res}, function() {
             //alert(this.state.wireless)
       }))
-      .catch(error => console.log(error))
+      .catch(error => console.log(error))*/
     }
 
   constructor(props){

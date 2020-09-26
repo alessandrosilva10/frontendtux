@@ -139,7 +139,7 @@ class Header extends React.Component {
     this.decrement = this.decrement.bind(this);
     this.showHide = this.showHide.bind(this);
     this.fetchGrupos = this.fetchGrupos.bind(this);
-    //this.fetchGrupos();
+    this.fetchGrupos();
   }
 
   increment() {
@@ -188,6 +188,7 @@ class Header extends React.Component {
       type: this.state.type === "input" ? "password" : "input",
     });
   }
+
   fetchGrupos = async () => {
     await axios
       .get(api.baseUrl, {
@@ -213,11 +214,6 @@ class Header extends React.Component {
       })
       .then((res) => {
         console.log(res.data);
-        // console.log(res.data[0].quantidade_usuarios);
-        // for(let g of res.data){
-        //   console.log(g);
-
-        // }
         this.setState({ grupos: res.data });
       });
 
@@ -258,17 +254,11 @@ class Header extends React.Component {
             }),
         };
       });
-    console.log(res);
     this.setState({ teste: res });
-    console.log(this.state.teste);
   };
 
-    componentDidUpdate(){
-        this.fetchGrupos();
-    }
-
-
-  componentDidMount() {
+ componentDidMount() {
+ toast.success("Usuário logado com sucesso!");
     axios
       .get(api.pegarIdUsuarioLogado, {
         headers: {
@@ -279,6 +269,28 @@ class Header extends React.Component {
       })
       .then((res) => {
         this.setState({ idUsuarioLogado: res.data.id });
+      });
+  }
+
+  sairGrupo = () => {
+    axios
+      .put(
+        api.updateUser + this.state.idUsuarioLogado + "/",
+        {
+          id: this.state.idUsuarioLogado,
+          grupo: '',
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Token ${this.props.cookies.get("token")}`,
+          },
+        }
+      )
+      .then((res) => {
+        alert("Usuário saiu no grupo com sucesso!");
+        window.location.reload()
       });
   }
 
@@ -302,7 +314,8 @@ class Header extends React.Component {
         }
       )
       .then((res) => {
-        console.log("Usuário entrou no grupo com sucesso!");
+        alert("Usuário entrou no grupo com sucesso!");
+        window.location.reload()
       });
   };
 
@@ -430,6 +443,7 @@ class Header extends React.Component {
                             fontWeight: "700",
                             fontSize: ".8em",
                           }}
+                          onClick={this.sairGrupo}
                         >
                           Sair do grupo
                         </MDBBtn>

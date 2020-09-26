@@ -40,7 +40,7 @@ class Login extends React.Component {
     }
   }
 
-  sucess = () => toast.success("Usuário logado com sucesso!");
+  success = () => toast.success("Usuário logado com sucesso!");
   warning = () => toast.warning("Usuário não autenticado!");
 
   inputChange = event => {
@@ -70,16 +70,15 @@ class Login extends React.Component {
     this.props.cookies.set('token', token, { path: '/' });
     token = this.props.cookies.get('token');
       if(token === null || token === 'undefined'){
-        window.location.replace("/auth/login");
         this.warning()
       }else{
         window.location.replace("/admin/index");
       }
-    }).catch(error => {
+    })/*.catch(error => {
         console.log(error)
         this.warning();
          setTimeout(() => 22210000);
-    })
+    })*/
   }
 
   render() {
@@ -166,7 +165,7 @@ class Login extends React.Component {
                   <Button className="" color="primary" onClick={this.login} type="button" >
                     Logar
                   </Button>
-                  <ToastContainer />
+                  /*<ToastContainer />*/
                </div>
             </CardBody>
           </Card>
