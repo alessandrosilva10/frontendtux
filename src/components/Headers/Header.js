@@ -485,7 +485,7 @@ componentDidUpdate() {
                             title={w.grupo}
                             // subheader=""
                             style={{
-                              backgroundColor: "#000000",
+                              backgroundColor: rgba(140, 20, 252, 1),
                               color: "white",
                               textAlign: "center",
                             }}
