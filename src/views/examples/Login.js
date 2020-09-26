@@ -35,7 +35,7 @@ class Login extends React.Component {
 
   state = {
     credentials: {
-      username: '',
+      email: '',
       password: ''
     }
   }
@@ -60,7 +60,7 @@ class Login extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username: this.state.credentials.username,
+        username: this.state.credentials.email,
         password: this.state.credentials.password,
       })
     })
@@ -133,7 +133,7 @@ class Login extends React.Component {
                         <i className="ni ni-email-83" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Email" name="username" onChange={this.inputChange} type="text"/>
+                    <Input placeholder="Email" name="email" onChange={this.inputChange} type="text"/>
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -165,7 +165,7 @@ class Login extends React.Component {
                   <Button className="" color="primary" onClick={this.login} type="button" >
                     Logar
                   </Button>
-                  /*<ToastContainer />*/
+                  {/*<ToastContainer />*/}
                </div>
             </CardBody>
           </Card>
