@@ -178,8 +178,8 @@ class Header extends React.Component {
   setSte = (event) => {
     console.log(event);
     console.log(event.target.value);
-    this.setState({value: event.target.value});
-  }
+    this.setState({ value: event.target.value });
+  };
 
   showHide(e) {
     e.preventDefault();
@@ -260,6 +260,7 @@ class Header extends React.Component {
       });
     console.log(res);
     this.setState({ teste: res });
+    console.log(this.state.teste);
   };
 
   componentDidMount() {
@@ -427,6 +428,24 @@ class Header extends React.Component {
                         >
                           Sair do grupo
                         </MDBBtn>
+
+                        <MDBBtn
+                          style={{
+                            cursor: "pointer",
+                            bottom: "18px",
+                            height: "45x",
+                            background: "#11cdef",
+                            color: "white",
+                            borderRadius: "10px",
+                            borderColor: "#11cdef",
+                            border: "1px solid #11cdef",
+                            fontWeight: "700",
+                            fontSize: ".8em",
+                          }}
+                          onClick={this.entrarGrupo(w.grupo_id, w.grupo)}
+                        >
+                          Editar grupo
+                        </MDBBtn>
                         {/* <Alert variant="filled" severity="info">
                           <strong>{w.grupo}</strong>
                         </Alert> */}
@@ -438,7 +457,11 @@ class Header extends React.Component {
                           }}
                         >
                           <CardHeader
+                            // classes={{
+                            //   subheader: 
+                            // }}
                             title={w.grupo}
+                            // subheader=""
                             style={{
                               backgroundColor: "#000000",
                               color: "white",
@@ -456,6 +479,8 @@ class Header extends React.Component {
                             <p>
                               {" "}
                               <br />
+                              <span> Quantidade de Participantes Atuais: </span>
+                              <br />
                               <FontAwesomeIcon icon={faUserFriends} />
                               <span style={{ marginLeft: 15 }}>
                                 Usuários do grupo:
@@ -463,7 +488,19 @@ class Header extends React.Component {
                                 {w.username}
                               </span>
                             </p>
-                            <ModalA
+                            <label>
+                              Grupo Aberto?&nbsp; 
+                              <input
+                                name="isOpenGroup"
+                                type="checkbox"
+                                // checked={this.state.isOpenGroup}
+                                checked
+                                // onChange={this.handleInputChange}
+                                // disabled
+                                readOnly
+                              />
+                            </label>
+                            {/* <ModalA
                               title={
                                 <Alert variant="filled" severity="info">
                                   <strong>
@@ -607,7 +644,7 @@ class Header extends React.Component {
                                 </>
                               }
                             />
-                            <ToastContainer />
+                            <ToastContainer /> */}
                           </CardBody>
                           <div className="quantity-input">
                             <button
@@ -619,7 +656,7 @@ class Header extends React.Component {
                             <input
                               className="quantity-input__screen"
                               type="text"
-                              name="qtdPartMax" 
+                              name="qtdPartMax"
                               value={w.quantidade_usuarios}
                               onChange={this.setSte}
                               // readOnly
