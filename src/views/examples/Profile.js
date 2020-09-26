@@ -47,7 +47,9 @@ class Profile extends React.Component {
 
   componentDidMount(){
     //fetch data
-    fetch('http://127.0.0.1:8000/api/user/', {
+    // fetch('http://127.0.0.1:8000/api/user/', {
+    console.log(Cookies.get('token'));
+    fetch('https://backendso2.herokuapp.com/api/user/', {
       method: 'GET',
         headers: {
           'Authorization': `Token ${Cookies.get('token')}`
@@ -71,7 +73,7 @@ class Profile extends React.Component {
         {/* Page content */}
         <Container className="mt--7" fluid>
           <Row>
-            <Col className="order-xl-2 mb-5 mb-xl-0" xl="4">
+            {/* <Col className="order-xl-2 mb-5 mb-xl-0" xl="4">
               <Card className="card-profile shadow">
                 <Row className="justify-content-center">
                   <Col className="order-lg-2" lg="3">
@@ -81,7 +83,7 @@ class Profile extends React.Component {
                           alt="..."
                           className="rounded-circle"
                           height="150px" weight="50px"
-                          /*src={require("assets/img/theme/team-4-800x800.jpg")}*/
+                          // src={require("assets/img/theme/team-4-800x800.jpg")}
                           src="https://i.ibb.co/CVv7n65/download.jpg"
                         />
                       </a>
@@ -156,15 +158,15 @@ class Profile extends React.Component {
                   </div>
                 </CardBody>
               </Card>
-            </Col>
-            <Col className="order-xl-1" xl="8">
+            </Col> */}
+            <Col className="order-xl-1" xl="12">
               <Card className="bg-secondary shadow">
                 <CardHeader className="bg-white border-0">
                   <Row className="align-items-center">
                     <Col xs="8">
                       <h3 className="mb-0">Minha conta</h3>
                     </Col>
-                    <Col className="text-right" xs="4">
+                    {/* <Col className="text-right" xs="4">
                       <Button
                         color="primary"
                         href="#pablo"
@@ -173,10 +175,10 @@ class Profile extends React.Component {
                       >
                         Configurações
                       </Button>
-                    </Col>
+                    </Col> */}
                   </Row>
                 </CardHeader>
-                <CardBody>
+                <CardBody className="bg-white">
                   <Form>
                     <h6 className="heading-small text-muted mb-4">
                       Informação do usuário
@@ -193,7 +195,7 @@ class Profile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue={this.capitalize(this.state.user.username)}
+                              // defaultValue={this.capitalize(this.state.user.username)}
                               id="input-username"
                               placeholder="Usuário"
                               type="text"
@@ -212,9 +214,9 @@ class Profile extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-email"
-                              placeholder={this.state.user.email}
+                              placeholder="Email"
                               type="email"
-                               disabled
+                              disabled
                             />
                           </FormGroup>
                         </Col>
@@ -230,7 +232,7 @@ class Profile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Lucky"
+                              // defaultValue="Lucky"
                               id="input-first-name"
                               placeholder="Nome"
                               type="text"
@@ -248,9 +250,9 @@ class Profile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Jesse"
+                              // defaultValue="Jesse"
                               id="input-last-name"
-                              placeholder="Last name"
+                              placeholder="Sobrenome"
                               type="text"
                                disabled
                             />
@@ -275,9 +277,9 @@ class Profile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                              // defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                               id="input-address"
-                              placeholder="Home Address"
+                              placeholder="Endereço"
                               type="text"
                               disabled
                             />
@@ -295,9 +297,9 @@ class Profile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="New York"
+                              // defaultValue="New York"
                               id="input-city"
-                              placeholder="City"
+                              placeholder="Cidade"
                               type="text"
                               disabled
                             />
@@ -313,9 +315,9 @@ class Profile extends React.Component {
                             </label>
                             <Input
                               className="form-control-alternative"
-                              defaultValue="United States"
+                              // defaultValue="United States"
                               id="input-country"
-                              placeholder="Country"
+                              placeholder="País"
                               type="text"
                               disabled
                             />
@@ -332,7 +334,7 @@ class Profile extends React.Component {
                             <Input
                               className="form-control-alternative"
                               id="input-postal-code"
-                              placeholder="Postal code"
+                              placeholder="CEP"
                               type="number"
                               disabled
                             />
@@ -340,9 +342,9 @@ class Profile extends React.Component {
                         </Col>
                       </Row>
                     </div>
-                    <hr className="my-4" />
+                    {/* <hr className="my-4" /> */}
                     {/* Description */}
-                    <h6 className="heading-small text-muted mb-4">Sobre mim</h6>
+                    {/* <h6 className="heading-small text-muted mb-4">Sobre mim</h6>
                     <div className="pl-lg-4">
                       <FormGroup>
                         <label>Sobre mim</label>
@@ -355,7 +357,7 @@ class Profile extends React.Component {
                           disabled
                         />
                       </FormGroup>
-                    </div>
+                    </div> */}
                   </Form>
                 </CardBody>
               </Card>

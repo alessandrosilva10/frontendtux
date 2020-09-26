@@ -33,39 +33,44 @@ import {
   Navbar,
   Nav,
   Container,
-  Media
+  Media,
 } from "reactstrap";
 
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 
 class AdminNavbar extends React.Component {
-  logout(){
+  logout() {
     const cookies = new Cookies();
-    alert('logout');
-    cookies.remove('token', { path: '/' });
-    window.location.replace("/auth/login")
+    alert("logout");
+    cookies.remove("token", { path: "/" });
+    window.location.replace("/auth/login");
   }
   /* Primeira letra de uma string maiscula */
   capitalize = (s) => {
-    if (typeof s !== 'string') return ''
-    return s.charAt(0).toUpperCase() + s.slice(1)
-  }
-  
-  state = {
-    user: []
-  }
+    if (typeof s !== "string") return "";
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  };
 
-  componentDidMount(){
+  state = {
+    user: [],
+  };
+
+  componentDidMount() {
     //fetch data
-    fetch('http://127.0.0.1:8000/api/users/', {
-      method: 'GET',
+    // fetch('http://127.0.0.1:8000/api/users/', {
+    fetch("https://backendso2.herokuapp.com/api/users/", {
+      method: "GET",
       headers: {
-        'Authorization': 'Token 9f3c999cc4dd381f0f0e9e858dd10ffc4189464e'
-      }
-    }).then( resp => resp.json()).then( res => this.setState({user: res}, function() {
-      console.log(this.state.user);
-    }))
-    .catch(error => console.log(error))
+        Authorization: "Token 9f3c999cc4dd381f0f0e9e858dd10ffc4189464e",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((res) =>
+        this.setState({ user: res }, function () {
+          console.log(this.state.user);
+        })
+      )
+      .catch((error) => console.log(error));
   }
 
   render() {
@@ -110,7 +115,7 @@ class AdminNavbar extends React.Component {
                     <i className="ni ni-single-02" />
                     <span>Meu perfil</span>
                   </DropdownItem>
-                  <DropdownItem to="/admin/user-profile" tag={Link}>
+                  {/* <DropdownItem to="/admin/user-profile" tag={Link}>
                     <i className="ni ni-settings-gear-65" />
                     <span>Configurações</span>
                   </DropdownItem>
@@ -121,7 +126,7 @@ class AdminNavbar extends React.Component {
                   <DropdownItem to="/admin/user-profile" tag={Link}>
                     <i className="ni ni-support-16" />
                     <span>Suporte</span>
-                  </DropdownItem>
+                  </DropdownItem> */}
                   <DropdownItem divider />
                   <DropdownItem href="/auth/login" onClick={this.logout}>
                     <i className="ni ni-user-run" />
