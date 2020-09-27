@@ -14,9 +14,10 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
+  MDBCardTitle,
 } from "mdbreact";
 // reactstrap components
-import { Card, CardBody, Container, Row, Col } from "reactstrap";
+import { Card, CardBody, Container, Row, Col, Form, FormGroup, Label, Input, ButtonToggle} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faWifi,
@@ -63,6 +64,50 @@ const ModalA = (props) => {
     showModal();
   };
 
+  function delay(ms) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+  
+  const cadastrarGrupo = () =>{
+    var desc = document.getElementById('descricao').value;
+    var qtd = document.getElementById('quantidade').value;
+    var open = document.getElementById('isOpen').value;
+    if(open === "Sim"){
+        open = 1;
+    }else{
+      open = 0;
+    }
+    console.log(desc);
+    console.log(qtd);
+    console.log(open);
+  
+    var token = document.cookie.split('token=')[1];
+
+    axios
+    .post(
+      api.grupoUrl,
+      {
+        grupo: desc,
+        quantidade_usuarios: qtd,
+        isGrupoOpen: open
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Token ${token}`,
+        },
+      }
+    )
+    .then((res) => {
+      toast.success("Grupo Criado com Sucesso");      
+      window.location.reload(10);
+      });
+
+};
+
+
   const showModal = () => {
     setIsOpen(true);
   };
@@ -92,20 +137,62 @@ const ModalA = (props) => {
                       fontWeight: "700",
                       fontSize: ".8em",
                       marginBottom: '-30px'
-        }}><strong>Criar novo Grupo</strong></MDBBtn></span> }
+        }}>
+          <strong>Criar novo Grupo</strong></MDBBtn></span> }
+
       </MDBBtnGroup>
       <Modal show={isOpen} onHide={hideModal} onEntered={modalLoaded}>
-        <Modal.Header style={{ background: "#2196f3" }}>
+        <Modal.Header style={{ background: "#2196f3"}}>
           <Modal.Title
             style={{
               marginTop: 0,
               marginLeft: "18%",
             }}
+
           >
-            {props.title}
+            Cadastro de Grupo
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>{props.body}</Modal.Body>
+        <Modal.Body>
+         <Form role="form" method="POST">
+           <FormGroup row> 
+
+            <Label sm={2}>Descrição:</Label>
+            <Col sm={10}>
+              <Input type="text" name="descricao" id="descricao" placeholder="Informe o nome do Grupo"></Input>
+            </Col>
+               
+           </FormGroup>
+           <FormGroup row>
+            <Label sm={2.1}>Quantidade:</Label>
+              <Col sm={9}>
+                <Input type="number" name="quantidade" id="quantidade" placeholder="Informe a quantidade de participantes"></Input>
+              </Col>
+           </FormGroup>
+
+           <FormGroup row>
+            <Label sm={2.1}>Está Aberto:</Label>
+            <Col sm={4}>
+              <Input type="select" name="isOpen" id="isOpen" syle={{ width:"5px"}}>
+                <option>Sim</option>
+                <option>Não</option>
+              </Input>
+            </Col>
+           
+           </FormGroup>
+
+           <FormGroup row>
+             <Col md={4}>
+                <ButtonToggle color="danger" onClick={hideModal}>Cancelar</ButtonToggle>
+             </Col>
+            
+            <Col md={8}>
+              <ButtonToggle color="success" onClick={cadastrarGrupo}>Cadastrar</ButtonToggle>
+            </Col>
+            
+           </FormGroup>
+         </Form>
+        </Modal.Body>
       </Modal>
     </>
   );
@@ -355,6 +442,7 @@ componentDidUpdate(prevProps) {
         //window.location.reload(forcedReload);
       });
   };
+
 
   enviarEmails = () => {
     axios
