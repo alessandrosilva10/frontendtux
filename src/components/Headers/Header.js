@@ -258,7 +258,7 @@ increment = async(qtdMax, idGrupo) => {
             }),
           grupo_id: obj
             .filter(function (_el) {
-              return _el.grupo === grupo && _el.username !== undefined;
+              return _el.grupo === grupo;
             })
             .map(function (_el) {
               if (_el.grupo_id) return _el.grupo_id;
