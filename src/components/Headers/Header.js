@@ -83,7 +83,7 @@ const ModalA = (props) => {
     console.log(open);
   
     var token = document.cookie.split('token=')[1];
-
+    console.log(token)
     axios
     .post(
       api.grupoUrl,
