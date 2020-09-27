@@ -138,30 +138,22 @@ class Header extends React.Component {
     this.fetchGrupos();
   }
 
-  increment = (qtdMax, idGrupo) => {
-    // this.setState((prevState) => {
-    //   console.log("increment");ModalA
-    //   console.log(prevState);
-    //   console.log(prevState.value);
-    //   console.log(++prevState.value);
-    //   value: ++prevState.value;
-    // });
-    console.log("increment");
-    let incremnt = qtdMax + 1;
-    console.log(incremnt);
-    // await axios
-    //   .put(
-    //     this.api.grupoUrl + idGrupo + "/",
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json",
-    //         Authorization: `Token ${this.props.cookies.get("token")}`,
-    //       },
-    //       quantidade_usuarios: incremnt
-    //     }
-    //   );
-    // this.fetchGrupos();
+increment = async(qtdMax, idGrupo) => {
+    await axios
+      .put(
+        api.grupoUrl + idGrupo[0] + "/",
+        {
+            quantidade_usuarios: parseInt(qtdMax) + 1
+        },
+        {
+           headers: {
+           "Content-Type": "application/json",
+           Accept: "application/json",
+           Authorization: `Token ${this.props.cookies.get("token")}`,
+         },
+        }
+     );
+     this.fetchGrupos();
   }
 
   decrement = (qtdMax, idGrupo) => {
@@ -266,7 +258,7 @@ class Header extends React.Component {
             }),
           grupo_id: obj
             .filter(function (_el) {
-              return _el.grupo === grupo;
+              return _el.grupo === grupo && _el.username !== undefined;
             })
             .map(function (_el) {
               if (_el.grupo_id) return _el.grupo_id;
@@ -283,7 +275,7 @@ class Header extends React.Component {
               return _el.grupo === grupo && _el.quantidade_usuarios !== undefined;
             })
             .map(function (_el) {
-              if (_el.isGrupoOpen) return _el.isGrupoOpen;
+              if (_el.isGrupoOpen === 1){ return 1} else{ return 0};
             }),
         };
       });
@@ -332,7 +324,8 @@ componentDidUpdate(prevProps) {
       )
       .then((res) => {
         toast.warning("Usuário saiu no grupo com sucesso!");
-        window.location.reload(forcedReload);
+        this.fetchGrupos();
+        //window.location.reload(forcedReload);
       });
   }
 
@@ -358,7 +351,8 @@ componentDidUpdate(prevProps) {
       )
       .then((res) => {
         toast.warning("Usuário entrou no grupo com sucesso!");
-        window.location.reload(forcedReload);
+        this.fetchGrupos();
+        //window.location.reload(forcedReload);
       });
   };
 
@@ -591,7 +585,7 @@ componentDidUpdate(prevProps) {
                             />
                             <button
                               className="quantity-input__modifier quantity-input__modifier--right"
-                              onClick={this.increment(w.quantidade_usuarios, w.grupo_id)}
+                              onClick={() => { this.increment(w.quantidade_usuarios, w.grupo_id) }}
                             >
                               &#xff0b;
                             </button>
