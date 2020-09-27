@@ -33,7 +33,7 @@ var routes = [
   },
     {
     path: "/index",
-    nname: "",
+    name: "HomePage",
     icon: "ni ni-tv-2 text-primary",
     component: Index,
     layout: "/admin"
@@ -54,7 +54,7 @@ var routes = [
   },
   {
     path: "/user-profile",
-    name: "",
+    name: "Perfil de Usuário",
     icon: "ni ni-single-02 text-yellow",
     component: Profile,
     layout: "/admin"

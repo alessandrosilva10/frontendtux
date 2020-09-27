@@ -40,40 +40,40 @@ class Profile extends React.Component {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
   }
-  
+
   state = {
     user: []
   }
 
-  componentDidMount(){
+  componentDidMount() {
     //fetch data
     // fetch('http://127.0.0.1:8000/api/user/', {
     console.log(Cookies.get('token'));
     fetch('https://backendso2.herokuapp.com/api/user/', {
       method: 'GET',
-        headers: {
-          'Authorization': `Token ${Cookies.get('token')}`
-        }
-    }).then( resp => resp.json()).then( res => this.setState({user: res}, function() {
+      headers: {
+        'Authorization': `Token ${Cookies.get('token')}`
+      }
+    }).then(resp => resp.json()).then(res => this.setState({ user: res }, function () {
       console.log(this.state.user);
     }))
-    .catch(error => console.log(error))
+      .catch(error => console.log(error))
   }
 
   render() {
     let token = this.props.cookies.get('token')
-    if(token === null || token === undefined){
-        return (
-            window.location.replace('/auth/login')
-        )
-    }else{
-    return (
-      <>
-        <UserHeader />
-        {/* Page content */}
-        <Container className="mt--7" fluid>
-          <Row>
-            {/* <Col className="order-xl-2 mb-5 mb-xl-0" xl="4">
+    if (token === null || token === undefined) {
+      return (
+        window.location.replace('/auth/login')
+      )
+    } else {
+      return (
+        <>
+          <UserHeader />
+          {/* Page content */}
+          <Container className="mt--7" fluid>
+            <Row>
+              {/* <Col className="order-xl-2 mb-5 mb-xl-0" xl="4">
               <Card className="card-profile shadow">
                 <Row className="justify-content-center">
                   <Col className="order-lg-2" lg="3">
@@ -159,14 +159,14 @@ class Profile extends React.Component {
                 </CardBody>
               </Card>
             </Col> */}
-            <Col className="order-xl-1" xl="12">
-              <Card className="bg-secondary shadow">
-                <CardHeader className="bg-white border-0">
-                  <Row className="align-items-center">
-                    <Col xs="8">
-                      <h3 className="mb-0">Minha conta</h3>
-                    </Col>
-                    {/* <Col className="text-right" xs="4">
+              <Col className="order-xl-1" xl="12">
+                <Card className="bg-secondary shadow">
+                  <CardHeader className="bg-white border-0">
+                    <Row className="align-items-center">
+                      <Col xs="8">
+                        <h3 className="mb-0">Minha conta</h3>
+                      </Col>
+                      {/* <Col className="text-right" xs="4">
                       <Button
                         color="primary"
                         href="#pablo"
@@ -176,175 +176,189 @@ class Profile extends React.Component {
                         Configurações
                       </Button>
                     </Col> */}
-                  </Row>
-                </CardHeader>
-                <CardBody className="bg-white">
-                  <Form>
-                    <h6 className="heading-small text-muted mb-4">
-                      Informação do usuário
+                    </Row>
+                  </CardHeader>
+                  <CardBody className="bg-white">
+                    <Form>
+                      <h6 className="heading-small text-muted mb-4">
+                        Informação do usuário
                     </h6>
-                    <div className="pl-lg-4">
-                      <Row>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-username"
-                            >
-                              Usuário
+                      <div className="pl-lg-4">
+                        <Row>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label
+                                className="form-control-label"
+                                htmlFor="input-username"
+                              >
+                                Usuário
                             </label>
-                            <Input
-                              className="form-control-alternative"
-                              // defaultValue={this.capitalize(this.state.user.username)}
-                              id="input-username"
-                              placeholder="Usuário"
-                              type="text"
-                              disabled
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-email"
-                            >
-                              Email
+                              <Input
+                                className="form-control-alternative"
+                                // defaultValue={this.capitalize(this.state.user.username)}
+                                id="input-username"
+                                placeholder="Usuário"
+                                type="text"
+                                disabled
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label
+                                className="form-control-label"
+                                htmlFor="input-email"
+                              >
+                                Email
                             </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="input-email"
-                              placeholder="Email"
-                              type="email"
-                              disabled
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-first-name"
-                            >
-                              Nome
+                              <Input
+                                className="form-control-alternative"
+                                id="input-email"
+                                placeholder="Email"
+                                type="email"
+                                disabled
+                              />
+                            </FormGroup>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label
+                                className="form-control-label"
+                                htmlFor="input-first-name"
+                              >
+                                Nome
                             </label>
-                            <Input
-                              className="form-control-alternative"
-                              // defaultValue="Lucky"
-                              id="input-first-name"
-                              placeholder="Nome"
-                              type="text"
-                               disabled
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="6">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
-                            >
-                              Sobrenome
+                              <Input
+                                className="form-control-alternative"
+                                // defaultValue="Lucky"
+                                id="input-first-name"
+                                placeholder="Nome"
+                                type="text"
+                                disabled
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <FormGroup>
+                              <label
+                                className="form-control-label"
+                                htmlFor="input-last-name"
+                              >
+                                Sobrenome
                             </label>
-                            <Input
-                              className="form-control-alternative"
-                              // defaultValue="Jesse"
-                              id="input-last-name"
-                              placeholder="Sobrenome"
-                              type="text"
-                               disabled
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                    </div>
-                    <hr className="my-4" />
-                    {/* Address */}
-                    <h6 className="heading-small text-muted mb-4">
-                      Informações de contato
+                              <Input
+                                className="form-control-alternative"
+                                // defaultValue="Jesse"
+                                id="input-last-name"
+                                placeholder="Sobrenome"
+                                type="text"
+                                disabled
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="6">
+                            <label>
+                              É Usuário Mestre?&nbsp;
+                              <input
+                                name="isOpenGroup"
+                                type="checkbox"
+                                // checked={this.state.isOpenGroup}
+                                checked
+                                // onChange={this.handleInputChange}
+                                // disabled
+                                readOnly
+                              />
+                            </label>
+                          </Col>
+                        </Row>
+                      </div>
+                      <hr className="my-4" />
+                      {/* Address */}
+                      <h6 className="heading-small text-muted mb-4">
+                        Informações de contato
                     </h6>
-                    <div className="pl-lg-4">
-                      <Row>
-                        <Col md="12">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
-                              Endereço
+                      <div className="pl-lg-4">
+                        <Row>
+                          <Col md="12">
+                            <FormGroup>
+                              <label
+                                className="form-control-label"
+                                htmlFor="input-address"
+                              >
+                                Endereço
                             </label>
-                            <Input
-                              className="form-control-alternative"
-                              // defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                              id="input-address"
-                              placeholder="Endereço"
-                              type="text"
-                              disabled
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col lg="4">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-city"
-                            >
-                              Cidade
+                              <Input
+                                className="form-control-alternative"
+                                // defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                                id="input-address"
+                                placeholder="Endereço"
+                                type="text"
+                                disabled
+                              />
+                            </FormGroup>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col lg="4">
+                            <FormGroup>
+                              <label
+                                className="form-control-label"
+                                htmlFor="input-city"
+                              >
+                                Cidade
                             </label>
-                            <Input
-                              className="form-control-alternative"
-                              // defaultValue="New York"
-                              id="input-city"
-                              placeholder="Cidade"
-                              type="text"
-                              disabled
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="4">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-country"
-                            >
-                              País
+                              <Input
+                                className="form-control-alternative"
+                                // defaultValue="New York"
+                                id="input-city"
+                                placeholder="Cidade"
+                                type="text"
+                                disabled
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="4">
+                            <FormGroup>
+                              <label
+                                className="form-control-label"
+                                htmlFor="input-country"
+                              >
+                                País
                             </label>
-                            <Input
-                              className="form-control-alternative"
-                              // defaultValue="United States"
-                              id="input-country"
-                              placeholder="País"
-                              type="text"
-                              disabled
-                            />
-                          </FormGroup>
-                        </Col>
-                        <Col lg="4">
-                          <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-country"
-                            >
-                              CEP
+                              <Input
+                                className="form-control-alternative"
+                                // defaultValue="United States"
+                                id="input-country"
+                                placeholder="País"
+                                type="text"
+                                disabled
+                              />
+                            </FormGroup>
+                          </Col>
+                          <Col lg="4">
+                            <FormGroup>
+                              <label
+                                className="form-control-label"
+                                htmlFor="input-country"
+                              >
+                                CEP
                             </label>
-                            <Input
-                              className="form-control-alternative"
-                              id="input-postal-code"
-                              placeholder="CEP"
-                              type="number"
-                              disabled
-                            />
-                          </FormGroup>
-                        </Col>
-                      </Row>
-                    </div>
-                    {/* <hr className="my-4" /> */}
-                    {/* Description */}
-                    {/* <h6 className="heading-small text-muted mb-4">Sobre mim</h6>
+                              <Input
+                                className="form-control-alternative"
+                                id="input-postal-code"
+                                placeholder="CEP"
+                                type="number"
+                                disabled
+                              />
+                            </FormGroup>
+                          </Col>
+                        </Row>
+                      </div>
+                      {/* <hr className="my-4" /> */}
+                      {/* Description */}
+                      {/* <h6 className="heading-small text-muted mb-4">Sobre mim</h6>
                     <div className="pl-lg-4">
                       <FormGroup>
                         <label>Sobre mim</label>
@@ -358,15 +372,15 @@ class Profile extends React.Component {
                         />
                       </FormGroup>
                     </div> */}
-                  </Form>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      </>
-    );
-   }
+                    </Form>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
+        </>
+      );
+    }
   }
 }
 

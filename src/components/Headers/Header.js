@@ -138,7 +138,7 @@ class Header extends React.Component {
     this.fetchGrupos();
   }
 
-  increment() {
+  increment = (qtdMax, idGrupo) => {
     // this.setState((prevState) => {
     //   console.log("increment");ModalA
     //   console.log(prevState);
@@ -146,9 +146,25 @@ class Header extends React.Component {
     //   console.log(++prevState.value);
     //   value: ++prevState.value;
     // });
+    console.log("increment");
+    let incremnt = qtdMax + 1;
+    console.log(incremnt);
+    // await axios
+    //   .put(
+    //     this.api.grupoUrl + idGrupo + "/",
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Accept: "application/json",
+    //         Authorization: `Token ${this.props.cookies.get("token")}`,
+    //       },
+    //       quantidade_usuarios: incremnt
+    //     }
+    //   );
+    // this.fetchGrupos();
   }
 
-  decrement() {
+  decrement = (qtdMax, idGrupo) => {
     // this.setState((prevState) => {
     //   console.log("decrement");
     //   console.log(prevState);
@@ -162,6 +178,15 @@ class Header extends React.Component {
     //     value: 0
     //   }
     // });
+    console.log("decrement");
+    if(qtdMax > 0){
+      // await axios
+      //   .put();
+      // this.fetchGrupos();
+    }
+    else{
+      console.log("Quantidade será menor que zero");
+    }
   }
 
   handleChange = (event) => {
@@ -171,10 +196,10 @@ class Header extends React.Component {
     });
   };
 
-  setSte = (event) => {
+  chanceValueQuantParMax = (event) => {
     console.log(event);
     console.log(event.target.value);
-    this.setState({ value: event.target.value });
+    // this.setState({ value: event.target.value });
   };
 
   showHide(e) {
@@ -262,7 +287,7 @@ class Header extends React.Component {
             }),
         };
       });
-
+    console.log(res)
     this.setState({ teste: res });
   };
 /*
@@ -525,7 +550,7 @@ componentDidUpdate(prevProps) {
                             <p>
                               {" "}
                               <br />
-                              <span> Quantidade de Participantes Atuais: </span>
+                              <span> Quantidade de Participantes Atuais: {w.username.length}</span>
                               <br />
                               <FontAwesomeIcon icon={faUserFriends} />
                               <span style={{ marginLeft: 15 }}>
@@ -540,18 +565,19 @@ componentDidUpdate(prevProps) {
                                 name="isOpenGroup"
                                 type="checkbox"
                                 // checked={this.state.isOpenGroup}
-                                checked
+                                checked={w.isGrupoAberto}
                                 // onChange={this.handleInputChange}
                                 // disabled
                                 readOnly
                               />
                             </label>
+                            <span>{w.isGrupoAberto}</span>
                             <ToastContainer />
                           </CardBody>
                           <div className="quantity-input">
                             <button
                               className="quantity-input__modifier quantity-input__modifier--left"
-                              onClick={this.decrement}
+                              onClick={this.decrement(w.quantidade_usuarios, w.grupo_id)}
                             >
                               &mdash;
                             </button>
@@ -560,12 +586,12 @@ componentDidUpdate(prevProps) {
                               type="text"
                               name="qtdPartMax"
                               value={w.quantidade_usuarios}
-                              onChange={this.setSte}
+                              onChange={this.chanceValueQuantParMax}
                               // readOnly
                             />
                             <button
                               className="quantity-input__modifier quantity-input__modifier--right"
-                              onClick={this.increment}
+                              onClick={this.increment(w.quantidade_usuarios, w.grupo_id)}
                             >
                               &#xff0b;
                             </button>
