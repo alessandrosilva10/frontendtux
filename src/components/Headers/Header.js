@@ -68,7 +68,7 @@ const ModalA = (props) => {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
 
-  
+
   const cadastrarGrupo = () =>{
     var desc = document.getElementById('descricao').value;
     var qtd = document.getElementById('quantidade').value;
@@ -81,7 +81,7 @@ const ModalA = (props) => {
     console.log(desc);
     console.log(qtd);
     console.log(open);
-  
+
     var token = document.cookie.split('token=')[1];
     console.log(token)
     axios
@@ -101,7 +101,7 @@ const ModalA = (props) => {
       }
     )
     .then((res) => {
-      toast.success("Grupo Criado com Sucesso");      
+      toast.success("Grupo Criado com Sucesso");
       this.fetchGrupos();
       });
 
@@ -155,13 +155,13 @@ const ModalA = (props) => {
         </Modal.Header>
         <Modal.Body>
          <Form role="form" method="POST">
-           <FormGroup row> 
+           <FormGroup row>
 
             <Label sm={2}>Descrição:</Label>
             <Col sm={10}>
               <Input type="text" name="descricao" id="descricao" placeholder="Informe o nome do Grupo"></Input>
             </Col>
-               
+
            </FormGroup>
            <FormGroup row>
             <Label sm={2.1}>Quantidade:</Label>
@@ -178,18 +178,18 @@ const ModalA = (props) => {
                 <option>Não</option>
               </Input>
             </Col>
-           
+
            </FormGroup>
 
            <FormGroup row>
              <Col md={4}>
                 <ButtonToggle color="danger" onClick={hideModal}>Cancelar</ButtonToggle>
              </Col>
-            
+
             <Col md={8}>
               <ButtonToggle color="success" onClick={cadastrarGrupo}>Cadastrar</ButtonToggle>
             </Col>
-            
+
            </FormGroup>
          </Form>
         </Modal.Body>

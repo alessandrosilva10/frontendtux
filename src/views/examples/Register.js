@@ -60,7 +60,7 @@ inputChange = event => {
 
   register = event => {
     let password = this.generatePassword()
-    fetch('http://127.0.0.1:8000/api/cadastrouser/', {
+    fetch('https://backendso2.herokuapp.com/api/cadastrouser/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -76,7 +76,7 @@ inputChange = event => {
     })
     .then(res => res.json()).then(res => {
         console.log(res)
-                fetch('http://127.0.0.1:8000/api/enviarpasswordemail/', {
+                fetch('https://backendso2.herokuapp.com/api/enviarpasswordemail/', {
                       method: 'POST',
                       headers: {
                         'Accept': 'application/json',
