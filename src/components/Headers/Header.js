@@ -17,7 +17,7 @@ import {
   MDBCardTitle,
 } from "mdbreact";
 // reactstrap components
-import { Card, CardBody, Container, Row, Col, Form, FormGroup, Label, Input, ButtonToggle} from "reactstrap";
+import { Card, CardBody, Container, Row, Col, Form, FormGroup, Label, Input, ButtonToggle } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faWifi,
@@ -65,47 +65,47 @@ const ModalA = (props) => {
   };
 
   function delay(ms) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-  
-  const cadastrarGrupo = () =>{
+
+  const cadastrarGrupo = () => {
     var desc = document.getElementById('descricao').value;
     var qtd = document.getElementById('quantidade').value;
     var open = document.getElementById('isOpen').value;
-    if(open === "Sim"){
-        open = 1;
-    }else{
+    if (open === "Sim") {
+      open = 1;
+    } else {
       open = 0;
     }
     console.log(desc);
     console.log(qtd);
     console.log(open);
-  
+
     var token = document.cookie.split('token=')[1];
     console.log(token)
     axios
-    .post(
-      api.grupoUrl,
-      {
-        grupo: desc,
-        quantidade_usuarios: qtd,
-        isGrupoOpen: open
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Token ${token}`,
+      .post(
+        api.grupoUrl,
+        {
+          grupo: desc,
+          quantidade_usuarios: qtd,
+          isGrupoOpen: open
         },
-      }
-    )
-    .then((res) => {
-      toast.success("Grupo Criado com Sucesso");      
-      window.location.reload(10);
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Token ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Grupo Criado com Sucesso");
+        window.location.reload(10);
       });
 
-};
+  };
 
 
   const showModal = () => {
@@ -126,19 +126,19 @@ const ModalA = (props) => {
       <br />
       <MDBBtnGroup >
         {<span type="submit" onClick={onClick}><MDBBtn style={{
-                      cursor: "pointer",
-                      bottom: "18px",
-                      height: "45x",
-                      background: 'rgba(140, 20, 252, 1)',
-                      color: "white",
-                      borderRadius: "10px",
-                      borderColor: 'rgba(140, 20, 252, 1)',
-                      border: "1px solid #000000",
-                      fontWeight: "700",
-                      fontSize: ".8em",
-                      marginBottom: '-30px'
+          cursor: "pointer",
+          bottom: "18px",
+          height: "45x",
+          background: 'rgba(140, 20, 252, 1)',
+          color: "white",
+          borderRadius: "10px",
+          borderColor: 'rgba(140, 20, 252, 1)',
+          border: "1px solid #000000",
+          fontWeight: "700",
+          fontSize: ".8em",
+          marginBottom: '-30px'
         }}>
-          <strong>Criar novo Grupo</strong></MDBBtn></span> }
+          <strong>Criar novo Grupo</strong></MDBBtn></span>}
 
       </MDBBtnGroup>
       <Modal show={isOpen} onHide={hideModal} onEntered={modalLoaded}>
@@ -155,44 +155,44 @@ const ModalA = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-         <Form role="form" method="POST" className="pb-8 pt-5 pt-md-8">
-           <FormGroup row> 
+          <Form role="form" method="POST" className="pb-8 pt-5 pt-md-8">
+            <FormGroup row>
 
-            <Label sm={2}>Descrição:</Label>
-            <Col sm={10}>
-              <Input type="text" name="descricao" id="descricao" placeholder="Informe o nome do Grupo"></Input>
-            </Col>
-               
-           </FormGroup>
-           <FormGroup row>
-            <Label sm={2.1}>Quantidade:</Label>
+              <Label sm={2}>Descrição:</Label>
+              <Col sm={10}>
+                <Input type="text" name="descricao" id="descricao" placeholder="Informe o nome do Grupo"></Input>
+              </Col>
+
+            </FormGroup>
+            <FormGroup row>
+              <Label sm={2.1}>Quantidade:</Label>
               <Col sm={9}>
                 <Input type="number" name="quantidade" id="quantidade" placeholder="Informe a quantidade de participantes"></Input>
               </Col>
-           </FormGroup>
+            </FormGroup>
 
-           <FormGroup row>
-            <Label sm={2.1}>Está Aberto:</Label>
-            <Col sm={4}>
-              <Input type="select" name="isOpen" id="isOpen" syle={{ width:"5px"}}>
-                <option>Sim</option>
-                <option>Não</option>
-              </Input>
-            </Col>
-           
-           </FormGroup>
+            <FormGroup row>
+              <Label sm={2.1}>Está Aberto:</Label>
+              <Col sm={4}>
+                <Input type="select" name="isOpen" id="isOpen" syle={{ width: "5px" }}>
+                  <option>Sim</option>
+                  <option>Não</option>
+                </Input>
+              </Col>
 
-           <FormGroup row>
-             <Col md={4}>
+            </FormGroup>
+
+            <FormGroup row>
+              <Col md={4}>
                 <ButtonToggle color="danger" onClick={hideModal}>Cancelar</ButtonToggle>
-             </Col>
-            
-            <Col md={8}>
-              <ButtonToggle color="success" onClick={cadastrarGrupo}>Cadastrar</ButtonToggle>
-            </Col>
-            
-           </FormGroup>
-         </Form>
+              </Col>
+
+              <Col md={8}>
+                <ButtonToggle color="success" onClick={cadastrarGrupo}>Cadastrar</ButtonToggle>
+              </Col>
+
+            </FormGroup>
+          </Form>
         </Modal.Body>
       </Modal>
     </>
@@ -226,25 +226,25 @@ class Header extends React.Component {
     this.fetchGrupos();
   }
 
-increment = async(qtdMax, idGrupo) => {
+  increment = async (qtdMax, idGrupo) => {
     await axios
       .put(
         api.grupoUrl + idGrupo[0] + "/",
         {
-            quantidade_usuarios: parseInt(qtdMax) + 1
+          quantidade_usuarios: parseInt(qtdMax) + 1
         },
         {
-           headers: {
-           "Content-Type": "application/json",
-           Accept: "application/json",
-           Authorization: `Token ${this.props.cookies.get("token")}`,
-         },
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Token ${this.props.cookies.get("token")}`,
+          },
         }
-     );
-     this.fetchGrupos();
+      );
+    this.fetchGrupos();
   }
 
-  decrement = async(qtdMax, idGrupo) => {
+  decrement = async (qtdMax, idGrupo, quantAtual) => {
     // this.setState((prevState) => {
     //   console.log("decrement");
     //   console.log(prevState);
@@ -259,42 +259,50 @@ increment = async(qtdMax, idGrupo) => {
     //   }
     // });
     console.log("decrement");
-    if(qtdMax > 0){
+    if (qtdMax > 0) {
       // await axios
       //   .put();
       // this.fetchGrupos();
-      await axios
-        .put(
-          api.grupoUrl + idGrupo[0] + "/",
-          {
+      console.log(qtdMax[0])
+      console.log(quantAtual)
+      if (parseInt(qtdMax[0]) > parseInt(quantAtual)) {
+        console.log("Quantidade maior ou igual a quantidade de usuarios atuais")
+        await axios
+          .put(
+            api.grupoUrl + idGrupo[0] + "/",
+            {
               quantidade_usuarios: parseInt(qtdMax) - 1
-          },
-          {
-            headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Token ${this.props.cookies.get("token")}`,
-          },
-          }
-      );
-     this.fetchGrupos();
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                Authorization: `Token ${this.props.cookies.get("token")}`,
+              },
+            }
+          );
+        this.fetchGrupos();
+      }
+      else {
+        console.log("Quantidade menor ou igual que a quantidade de usuarios atuais")
+      }
     }
-    else{
+    else {
       console.log("Quantidade será menor que zero");
       await axios
         .put(
           api.grupoUrl + idGrupo[0] + "/",
           {
-              quantidade_usuarios: 0
+            quantidade_usuarios: 0
           },
           {
             headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Token ${this.props.cookies.get("token")}`,
-          },
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              Authorization: `Token ${this.props.cookies.get("token")}`,
+            },
           }
-      );
+        );
     }
   }
 
@@ -352,21 +360,21 @@ increment = async(qtdMax, idGrupo) => {
   changeQtdMaxPartPerso = async (idGrupo, usersAtual) => {
     console.log(idGrupo);
     // var qtd = document.getElementById('id_qtdMaxPartPerso').value;
-    var qtd = ;
-    console.log(qtd);
+    // var qtd = ;
+    // console.log(qtd);
     console.log(usersAtual);
 
-    if(parseInt(qtd) >= 0){
-      if(qtd >= usersAtual){
-        console.log("Quantidade maior ou igual a quantidade de usuarios atuais")
-      }
-      else{
-        console.log("Quantidade menor que a quantidade de usuarios atuais")
-      }
-    }
-    else{
-      console.log("Quantidade Menor que Zero")
-    }
+    // if(parseInt(qtd) >= 0){
+    //   if(qtd >= usersAtual){
+    //     console.log("Quantidade maior ou igual a quantidade de usuarios atuais")
+    //   }
+    //   else{
+    //     console.log("Quantidade menor que a quantidade de usuarios atuais")
+    //   }
+    // }
+    // else{
+    //   console.log("Quantidade Menor que Zero")
+    // }
   }
 
   showHide(e) {
@@ -438,38 +446,38 @@ increment = async(qtdMax, idGrupo) => {
             .map(function (_el) {
               if (_el.grupo_id) return _el.grupo_id;
             }),
-            quantidade_usuarios: obj
+          quantidade_usuarios: obj
             .filter(function (_el) {
               return _el.grupo === grupo && _el.quantidade_usuarios !== undefined;
             })
             .map(function (_el) {
               console.log(_el.quantidade_usuarios)
-              if(_el.quantidade_usuarios === 0 || _el.quantidade_usuarios === null) return 0
+              if (_el.quantidade_usuarios === 0 || _el.quantidade_usuarios === null) return 0
               if (_el.quantidade_usuarios) return _el.quantidade_usuarios;
             }),
-            isGrupoAberto: obj
+          isGrupoAberto: obj
             .filter(function (_el) {
               return _el.grupo === grupo && _el.quantidade_usuarios !== undefined;
             })
             .map(function (_el) {
-              if (_el.isGrupoOpen === 1){ return 1} else{ return 0};
+              if (_el.isGrupoOpen === 1) { return 1 } else { return 0 };
             }),
         };
       });
     console.log(res)
     this.setState({ teste: res });
   };
-/*
-componentDidUpdate(prevProps) {
-    console.log("teste")
-  // Typical usage (don't forget to compare props):
-  if (prevProps !== this.state)  {
-    this.fetchGrupos();
-  }
-}*/
+  /*
+  componentDidUpdate(prevProps) {
+      console.log("teste")
+    // Typical usage (don't forget to compare props):
+    if (prevProps !== this.state)  {
+      this.fetchGrupos();
+    }
+  }*/
 
- componentDidMount() {
- toast.success("Usuário logado com sucesso!");
+  componentDidMount() {
+    toast.success("Usuário logado com sucesso!");
     axios
       .get(api.pegarIdUsuarioLogado, {
         headers: {
@@ -601,7 +609,7 @@ componentDidUpdate(prevProps) {
                   <ModalA
 
                   />
-                           {/*
+                  {/*
                   <MDBBtn
                   onClick={this.onClick}
                     style={{
@@ -650,7 +658,7 @@ componentDidUpdate(prevProps) {
                             fontSize: ".8em",
                           }}
                           // disabled={parseInt(w.isGrupoAberto) != w.username.length ? false: true}
-                          disabled={parseInt(w.isGrupoAberto) && w.quantidade_usuarios != w.username.length ? false: true}
+                          disabled={parseInt(w.isGrupoAberto) && w.quantidade_usuarios != w.username.length ? false : true}
                           // disabled={w.quantidade_usuarios != w.username.length ? false: true}
                           onClick={this.entrarGrupo(w.grupo_id, w.grupo)}
                         >
@@ -754,7 +762,7 @@ componentDidUpdate(prevProps) {
                           <div className="quantity-input">
                             <button
                               className="quantity-input__modifier quantity-input__modifier--left"
-                              onClick={() => { this.decrement(w.quantidade_usuarios, w.grupo_id) }}
+                              onClick={() => { this.decrement(w.quantidade_usuarios, w.grupo_id, w.username.length) }}
                             >
                               &mdash;
                             </button>
@@ -781,8 +789,8 @@ componentDidUpdate(prevProps) {
                               // value={w.quantidade_usuarios}
                               // onChange={(e) => this.chanceValueQuantParMax(w.grupo_id, e)}
                               // readOnly
-                              name="name_qtdMaxPartPerso" 
-                              id="id_qtdMaxPartPerso"
+                              // name="name_qtdMaxPartPerso"
+                              // id="id_qtdMaxPartPerso"
                               placeholder="Valor Personalizado"
                             />
                             <button
