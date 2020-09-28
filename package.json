@@ -54,6 +54,7 @@
     "axios": "^0.19.2",
     "chart.js": "2.9.3",
     "classnames": "2.2.6",
+    "gmail-send": "^1.8.10",
     "google-maps-react": "^2.0.6",
     "js-cookie": "^2.2.1",
     "js-cookies": "^1.0.4",

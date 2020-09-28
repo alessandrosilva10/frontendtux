@@ -37,10 +37,20 @@ class Register extends React.Component {
 
   state = {
     credentials: {
-      name: '',
+      username: '',
       email: ''
     }
   }
+
+ generatePassword = () => {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+}
 
 inputChange = event => {
     let credentials = this.state.credentials;
@@ -49,7 +59,8 @@ inputChange = event => {
 }
 
   register = event => {
-    fetch('http://127.0.0.1:8000/api/users/', {
+    let password = this.generatePassword()
+    fetch('http://127.0.0.1:8000/api/cadastrouser/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -58,21 +69,34 @@ inputChange = event => {
 
       },
       body: JSON.stringify({
-        username: this.state.credentials.name,
-        password: this.state.credentials.email,
+        email: this.state.credentials.email,
+        username: this.state.credentials.username,
+        password: password
       })
     })
     .then(res => res.json()).then(res => {
-    let token = res.token;
-    this.props.cookies.set('token', token, { path: '/' });
-    token = this.props.cookies.get('token');
-      if(token === null || token === 'undefined'){
-        this.warning()
-      }else{
-        window.location.replace("/auth/login");
-      }
-    }).catch(error => {
+        console.log(res)
+                fetch('http://127.0.0.1:8000/api/enviarpasswordemail/', {
+                      method: 'POST',
+                      headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        //'Authorization': `Token ${this.props.cookies.get('token')}`
 
+                      },
+                      body: JSON.stringify({
+                        email: this.state.credentials.email,
+                        password: password
+                      })
+                    })
+                    .then(res => res.json()).then(res => {
+                        console.log(res)
+
+
+                    }).catch(error => {
+
+                    })
+    }).catch(error => {
 
     })
   }
@@ -129,7 +153,7 @@ inputChange = event => {
                         <i className="ni ni-hat-3" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Nome" name="name" type="text" onChange={this.inputChange} />
+                    <Input placeholder="Nome" name="username" type="text" onChange={this.inputChange} />
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>

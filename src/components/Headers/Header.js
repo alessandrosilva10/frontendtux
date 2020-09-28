@@ -102,7 +102,7 @@ const ModalA = (props) => {
     )
     .then((res) => {
       toast.success("Grupo Criado com Sucesso");      
-      window.location.reload(10);
+      this.fetchGrupos();
       });
 
 };
