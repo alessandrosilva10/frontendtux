@@ -142,11 +142,12 @@ const ModalA = (props) => {
 
       </MDBBtnGroup>
       <Modal show={isOpen} onHide={hideModal} onEntered={modalLoaded}>
-        <Modal.Header style={{ background: "#2196f3"}}>
+        <Modal.Header className="bg-gradient-purple">
           <Modal.Title
             style={{
               marginTop: 0,
               marginLeft: "18%",
+              color: "white",
             }}
 
           >
@@ -154,7 +155,7 @@ const ModalA = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-         <Form role="form" method="POST">
+         <Form role="form" method="POST" className="pb-8 pt-5 pt-md-8">
            <FormGroup row> 
 
             <Label sm={2}>Descrição:</Label>
@@ -243,7 +244,7 @@ increment = async(qtdMax, idGrupo) => {
      this.fetchGrupos();
   }
 
-  decrement = (qtdMax, idGrupo) => {
+  decrement = async(qtdMax, idGrupo) => {
     // this.setState((prevState) => {
     //   console.log("decrement");
     //   console.log(prevState);
@@ -262,9 +263,38 @@ increment = async(qtdMax, idGrupo) => {
       // await axios
       //   .put();
       // this.fetchGrupos();
+      await axios
+        .put(
+          api.grupoUrl + idGrupo[0] + "/",
+          {
+              quantidade_usuarios: parseInt(qtdMax) - 1
+          },
+          {
+            headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Token ${this.props.cookies.get("token")}`,
+          },
+          }
+      );
+     this.fetchGrupos();
     }
     else{
       console.log("Quantidade será menor que zero");
+      await axios
+        .put(
+          api.grupoUrl + idGrupo[0] + "/",
+          {
+              quantidade_usuarios: 0
+          },
+          {
+            headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Token ${this.props.cookies.get("token")}`,
+          },
+          }
+      );
     }
   }
 
@@ -275,11 +305,69 @@ increment = async(qtdMax, idGrupo) => {
     });
   };
 
-  chanceValueQuantParMax = (event) => {
-    console.log(event);
-    console.log(event.target.value);
-    // this.setState({ value: event.target.value });
-  };
+  // chanceValueQuantParMax = async (idGrupo, event) => {
+  //   console.log(event);
+  //   console.log(event.target.value);
+  //   console.log(idGrupo);
+  //   // this.setState({ value: event.target.value });
+  //   if(event.target.value >= 0){
+  //     // await axios
+  //     //   .put();
+  //     // this.fetchGrupos();
+  //     await axios
+  //       .put(
+  //         api.grupoUrl + idGrupo[0] + "/",
+  //         {
+  //             quantidade_usuarios: parseInt(event.target.value)
+  //         },
+  //         {
+  //           headers: {
+  //           "Content-Type": "application/json",
+  //           Accept: "application/json",
+  //           Authorization: `Token ${this.props.cookies.get("token")}`,
+  //         },
+  //         }
+  //     );
+  //    this.fetchGrupos();
+  //   }
+  //   else{
+  //     console.log("Quantidade será menor que zero");
+  //     await axios
+  //       .put(
+  //         api.grupoUrl + idGrupo[0] + "/",
+  //         {
+  //             quantidade_usuarios: 0
+  //         },
+  //         {
+  //           headers: {
+  //           "Content-Type": "application/json",
+  //           Accept: "application/json",
+  //           Authorization: `Token ${this.props.cookies.get("token")}`,
+  //         },
+  //         }
+  //     );
+  //   }
+  // };
+
+  changeQtdMaxPartPerso = async (idGrupo, usersAtual) => {
+    console.log(idGrupo);
+    // var qtd = document.getElementById('id_qtdMaxPartPerso').value;
+    var qtd = ;
+    console.log(qtd);
+    console.log(usersAtual);
+
+    if(parseInt(qtd) >= 0){
+      if(qtd >= usersAtual){
+        console.log("Quantidade maior ou igual a quantidade de usuarios atuais")
+      }
+      else{
+        console.log("Quantidade menor que a quantidade de usuarios atuais")
+      }
+    }
+    else{
+      console.log("Quantidade Menor que Zero")
+    }
+  }
 
   showHide(e) {
     e.preventDefault();
@@ -355,6 +443,8 @@ increment = async(qtdMax, idGrupo) => {
               return _el.grupo === grupo && _el.quantidade_usuarios !== undefined;
             })
             .map(function (_el) {
+              console.log(_el.quantidade_usuarios)
+              if(_el.quantidade_usuarios === 0 || _el.quantidade_usuarios === null) return 0
               if (_el.quantidade_usuarios) return _el.quantidade_usuarios;
             }),
             isGrupoAberto: obj
@@ -559,11 +649,15 @@ componentDidUpdate(prevProps) {
                             fontWeight: "700",
                             fontSize: ".8em",
                           }}
+                          // disabled={parseInt(w.isGrupoAberto) != w.username.length ? false: true}
+                          disabled={parseInt(w.isGrupoAberto) && w.quantidade_usuarios != w.username.length ? false: true}
+                          // disabled={w.quantidade_usuarios != w.username.length ? false: true}
                           onClick={this.entrarGrupo(w.grupo_id, w.grupo)}
                         >
+                          {/* {w.quantidade_usuarios + "---" + w.username.length} */}
                           Entrar no grupo
                         </MDBBtn>
-
+                        {/* <span>{parseInt(w.isGrupoAberto) ? 0 : 1}</span> */}
                         <MDBBtn
                           style={{
                             cursor: "pointer",
@@ -577,6 +671,7 @@ componentDidUpdate(prevProps) {
                             fontWeight: "700",
                             fontSize: ".8em",
                           }}
+                          disabled={parseInt(w.isGrupoAberto) ? false : true}
                           onClick={this.sairGrupo}
                         >
                           Sair do grupo
@@ -647,19 +742,19 @@ componentDidUpdate(prevProps) {
                                 name="isOpenGroup"
                                 type="checkbox"
                                 // checked={this.state.isOpenGroup}
-                                checked={w.isGrupoAberto}
+                                checked={parseInt(w.isGrupoAberto)}
                                 // onChange={this.handleInputChange}
                                 // disabled
                                 readOnly
                               />
                             </label>
-                            <span>{w.isGrupoAberto}</span>
+                            {/* <span>{w.isGrupoAberto}</span> */}
                             <ToastContainer />
                           </CardBody>
                           <div className="quantity-input">
                             <button
                               className="quantity-input__modifier quantity-input__modifier--left"
-                              onClick={this.decrement(w.quantidade_usuarios, w.grupo_id)}
+                              onClick={() => { this.decrement(w.quantidade_usuarios, w.grupo_id) }}
                             >
                               &mdash;
                             </button>
@@ -668,14 +763,34 @@ componentDidUpdate(prevProps) {
                               type="text"
                               name="qtdPartMax"
                               value={w.quantidade_usuarios}
-                              onChange={this.chanceValueQuantParMax}
-                              // readOnly
+                              // onChange={(e) => this.chanceValueQuantParMax(w.grupo_id, e)}
+                              readOnly
                             />
                             <button
                               className="quantity-input__modifier quantity-input__modifier--right"
                               onClick={() => { this.increment(w.quantidade_usuarios, w.grupo_id) }}
                             >
                               &#xff0b;
+                            </button>
+                          </div>
+                          <div className="quantity-input">
+                            <input
+                              // className="quantity-input__screen"
+                              type="text"
+                              name="qtdPartMax"
+                              // value={w.quantidade_usuarios}
+                              // onChange={(e) => this.chanceValueQuantParMax(w.grupo_id, e)}
+                              // readOnly
+                              name="name_qtdMaxPartPerso" 
+                              id="id_qtdMaxPartPerso"
+                              placeholder="Valor Personalizado"
+                            />
+                            <button
+                              // className="quantity-input__modifier quantity-input__modifier--right"
+                              onClick={() => { this.changeQtdMaxPartPerso(w.grupo_id, w.username.length) }}
+                              type="submit"
+                            >
+                              OK
                             </button>
                           </div>
                         </Card>
