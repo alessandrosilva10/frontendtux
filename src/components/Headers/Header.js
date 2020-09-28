@@ -360,21 +360,39 @@ class Header extends React.Component {
   changeQtdMaxPartPerso = async (idGrupo, usersAtual) => {
     console.log(idGrupo);
     // var qtd = document.getElementById('id_qtdMaxPartPerso').value;
+    var t = 'id_qtdMaxPartPerso'+idGrupo[0];
+    console.log(t);
+    var qtd = document.getElementById(t).value;
     // var qtd = ;
-    // console.log(qtd);
+    console.log(qtd);
     console.log(usersAtual);
 
-    // if(parseInt(qtd) >= 0){
-    //   if(qtd >= usersAtual){
-    //     console.log("Quantidade maior ou igual a quantidade de usuarios atuais")
-    //   }
-    //   else{
-    //     console.log("Quantidade menor que a quantidade de usuarios atuais")
-    //   }
-    // }
-    // else{
-    //   console.log("Quantidade Menor que Zero")
-    // }
+    if(parseInt(qtd) >= 0){
+      if(qtd >= usersAtual){
+        console.log("Quantidade maior ou igual a quantidade de usuarios atuais")
+        await axios
+          .put(
+            api.grupoUrl + idGrupo[0] + "/",
+            {
+              quantidade_usuarios: parseInt(qtd)
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                Authorization: `Token ${this.props.cookies.get("token")}`,
+              },
+            }
+          );
+        this.fetchGrupos();
+      }
+      else{
+        console.log("Quantidade menor que a quantidade de usuarios atuais")
+      }
+    }
+    else{
+      console.log("Quantidade Menor que Zero")
+    }
   }
 
   showHide(e) {
@@ -782,24 +800,24 @@ class Header extends React.Component {
                             </button>
                           </div>
                           <div className="quantity-input">
-                            <input
+                            <Input
                               // className="quantity-input__screen"
                               type="text"
                               name="qtdPartMax"
                               // value={w.quantidade_usuarios}
                               // onChange={(e) => this.chanceValueQuantParMax(w.grupo_id, e)}
                               // readOnly
-                              // name="name_qtdMaxPartPerso"
-                              // id="id_qtdMaxPartPerso"
+                              name={"name_qtdMaxPartPerso" + w.grupo_id[0]}
+                              id={"id_qtdMaxPartPerso" + w.grupo_id[0]}
                               placeholder="Valor Personalizado"
                             />
-                            <button
+                            <ButtonToggle
                               // className="quantity-input__modifier quantity-input__modifier--right"
                               onClick={() => { this.changeQtdMaxPartPerso(w.grupo_id, w.username.length) }}
                               type="submit"
                             >
                               OK
-                            </button>
+                            </ButtonToggle>
                           </div>
                         </Card>
                       </Col>
