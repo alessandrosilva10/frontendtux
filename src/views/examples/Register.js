@@ -90,11 +90,9 @@ inputChange = event => {
                       })
                     })
                     .then(res => res.json()).then(res => {
-                        console.log(res)
-
-
+                        toast.success("Usuário cadastrado com sucesso!");
                     }).catch(error => {
-
+                        toast.success("Houve um problema ao cadastrar o usuário!");
                     })
     }).catch(error => {
 
